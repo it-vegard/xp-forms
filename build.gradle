@@ -1,0 +1,73 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            url 'http://repo.enonic.com/public'
+        }
+    }
+
+    dependencies {
+        classpath "com.enonic.xp:gradle-plugin:${xpVersion}"
+        
+        classpath "com.moowork.gradle:gradle-node-plugin:0.11"
+        
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'com.enonic.xp.app'
+
+apply plugin: 'com.moowork.node'
+
+
+app {
+    name = project.appName
+    displayName = project.displayName
+    vendorName = 'Enonic USA'
+    vendorUrl = 'https://enonic.com'
+}
+
+dependencies {
+    compile "com.enonic.xp:core-api:${xpVersion}"
+    compile "com.enonic.xp:portal-api:${xpVersion}"
+    include "com.enonic.xp:lib-content:${xpVersion}"
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+    include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
+    include "com.enonic.xp:lib-auth:${xpVersion}"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'http://repo.enonic.com/public'
+    }
+    
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository( url: 'http://repo.enonic.com/artifactory/public' )
+        }
+    }
+}
+
+
+node {
+    version = '6.10.2'
+    download = true
+}
+
+task webpack(type: NodeTask) {
+    script = file('node_modules/webpack/bin/webpack.js')
+}
+
+// processes your package.json before running webpack
+webpack.dependsOn 'npmInstall'
+
+build.dependsOn webpack
+build.mustRunAfter webpack
+
