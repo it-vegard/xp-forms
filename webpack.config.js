@@ -5,11 +5,18 @@ var paths = {
 };
 
 module.exports = {
-  entry: [path.join(__dirname, paths.assets, 'js', 'main.js'),
-  path.join(__dirname, paths.assets, 'scss', 'main.scss')],
+  entry: {
+    'js/main.js': path.join(__dirname, paths.assets, 'js', 'main.js'),
+    'css/main.css': path.join(__dirname, paths.assets, 'scss', 'main.scss')
+  },
   output: {
-    path: path.join(__dirname, paths.assets),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'build/resources/main/assets/'),
+    filename: '[name]'
+  },
+  resolve: {
+    extensions: [
+      '.js', '.jsx'
+    ]
   },
   module: {
     loaders: [
@@ -19,13 +26,17 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: [ 'es2015' ]
+          presets: [
+            'env',
+            'react'
+          ]
         }
       },
       
       
       {
         test: /\.scss$/,
+        exclude: /(node_modules)/,
         loaders: ["style-loader", "css-loader", "sass-loader"]
       }
       
