@@ -1,6 +1,6 @@
 {
   "name": "Forms",
-  "version": "1.0.0",
+  "version": "0.1.0-SNAPSHOT",
   "description": "Welcome to your brand new enonic XP app!",
   "dependencies": {
     "prop-types": "^15.5.10",
