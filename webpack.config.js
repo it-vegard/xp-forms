@@ -6,8 +6,8 @@ var paths = {
 
 module.exports = {
   entry: {
-    'js/main.js': path.join(__dirname, paths.assets, 'js', 'main.js'),
-    'css/main.css': path.join(__dirname, paths.assets, 'scss', 'main.scss')
+    'formsAdmin.js': path.join(__dirname, paths.assets, 'js', 'formsAdmin.jsx'),
+    'formsAdmin.css': path.join(__dirname, paths.assets, 'scss', 'formsAdmin.scss')
   },
   output: {
     path: path.join(__dirname, 'build/resources/main/assets/'),
