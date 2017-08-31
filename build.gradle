@@ -28,6 +28,10 @@ app {
     vendorUrl = 'https://enonic.com'
 }
 
+configurations {
+    rasterizer
+}
+
 dependencies {
     compile "com.enonic.xp:core-api:${xpVersion}"
     compile "com.enonic.xp:portal-api:${xpVersion}"
@@ -35,6 +39,8 @@ dependencies {
     include "com.enonic.xp:lib-portal:${xpVersion}"
     include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
     include "com.enonic.xp:lib-auth:${xpVersion}"
+    rasterizer "org.apache.xmlgraphics:batik-rasterizer:1.7"
+    rasterizer "org.apache.xmlgraphics:batik-codec:1.7"
 }
 
 repositories {
@@ -65,9 +71,34 @@ task webpack(type: NodeTask) {
     script = file('node_modules/webpack/bin/webpack.js')
 }
 
+task copyTask(type: Copy) {
+    from 'src/main/resources/application.svg'
+    into 'build/resources/main/admin/tools/forms-admin/'
+    rename (
+        'application.svg',
+        'forms-admin.svg'
+    )
+}
+
+task svg2png(type: org.gradle.api.tasks.JavaExec) {
+    classpath configurations.rasterizer
+    main "org.apache.batik.apps.rasterizer.Main"
+    // -scriptSecurityOff required as the security manager of batik would interfere with the security manager of gradle
+    args "-scriptSecurityOff", "-d", "build/resources/main/assets/img/icons/adminFavicon.png", "-m", "image/png", "src/main/resources/application.svg", "-bg", "0.0.0.255"
+}
+
 // processes your package.json before running webpack
 webpack.dependsOn 'npmInstall'
 
-build.dependsOn webpack
-build.mustRunAfter webpack
+// copies application logo into the form admin tool folder
+copyTask.dependsOn webpack
+copyTask.mustRunAfter webpack
+
+// converts svg logo and copies it into the image assets folder
+svg2png.dependsOn copyTask
+svg2png.mustRunAfter copyTask
+
+// bundles app
+build.dependsOn svg2png
+build.mustRunAfter svg2png
 
