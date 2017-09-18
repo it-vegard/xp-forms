@@ -1,0 +1,142 @@
+$logo-width: 64px;
+$default-margin-right: 25px;
+$default-margin-bottom: 10px;
+$minimum-click-size: 45px;
+$default-input-padding: 5px;
+$default-input-font-size: 16px;
+$navigationTabArrowHeight: 21px;
+$navigationTabBackgroundColor: #eee;
+$navigationTabActiveBackgroundColor: #fff;
+
+#xpFormsEditor {
+  overflow-y: scroll;
+}
+
+.xpFormHeading {
+  display: grid;
+  grid-template-columns: $logo-width auto;
+  grid-template-rows: auto;
+  grid-template-areas: "logo main" "logo main";
+  grid-gap: $default-margin-bottom $default-margin-right;
+  padding: 0 $default-margin-right;
+}
+
+.xpFormHeading .xpform-logo {
+  grid-area: "logo";
+}
+
+.xpFormHeading .xpFormHeadingMain {
+  grid-area: "main";
+}
+
+.xpFormHeading .xpFormEditorLabel {
+  margin-bottom: 0;
+}
+
+.xpform-logo {
+  width: $logo-width;
+  height: $logo-width;
+}
+
+/*** Input styling ***/
+
+.xpFormEditorFieldset {
+  padding: 0 10px 0 20px;
+}
+
+.xpFormEditorLabel {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.xpFormInput {
+  border: 1px solid #98c9f2;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px 10px;
+  line-height: 16px;
+}
+
+.xpFormTextInput {
+  height: 37px;
+}
+
+.xpFormTextInput.largeSize {
+  font-size: $default-input-font-size * 2;
+}
+
+.xpFormTextInput.normalSize {
+  font-size: $default-input-font-size * 1.5;
+}
+
+.xpFormTextInput.smallSize {
+  font-size: $default-input-font-size;
+}
+
+.xpFormHtmlInput {
+  min-height: 52px;
+}
+
+.xpFormInput.noLabel {
+  border: 0;
+
+  &:hover, &:focus {
+    border: 1px solid #999;
+    padding: 1px;
+  }
+}
+
+/*** Editor navigation styling ***/
+
+.xpFormEditorNavigation {
+  background-color: #eee;
+  box-shadow: 0 10px 10px -10px #a1a1a1;
+}
+
+.xpFormEditorNavigation li {
+  display: inline-block;
+  font-size: $default-input-font-size;
+  line-height: 42px;
+  padding: 0 $navigationTabArrowHeight;
+  text-align: center;
+
+  &:hover a, &:focus a {
+    color: darken(#acacac, 20%);
+  }
+}
+
+.xpFormEditorNavigation li.active {
+  background-color: $navigationTabActiveBackgroundColor;
+
+  &:before, &:after {
+    display: block;
+  }
+
+  &:before {
+    content: " ";
+    float: left;
+    margin-left: -$navigationTabArrowHeight;
+    border-top: $navigationTabArrowHeight solid transparent;
+    border-bottom: $navigationTabArrowHeight solid transparent;
+    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabBackgroundColor;
+  }
+
+  &:after {
+    content: " ";
+    float: right;
+    margin-right: -$navigationTabArrowHeight;
+    border-top: $navigationTabArrowHeight solid #eee;
+    border-bottom: $navigationTabArrowHeight solid #eee;
+    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabActiveBackgroundColor;
+  }
+}
+
+.xpFormEditorConfigurationHeading {
+  font-size: 25px;
+  line-height:20px;
+  padding-top: 30px;
+  margin-bottom: 30px;
+  box-sizing: content-box;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
