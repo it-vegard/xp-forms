@@ -5,12 +5,12 @@ $minimum-click-size: 45px;
 $default-input-padding: 5px;
 $default-input-font-size: 16px;
 $navigationTabArrowHeight: 21px;
-$navigationTabBackgroundColor: #eee;
-$navigationTabActiveBackgroundColor: #fff;
 
-#xpFormsEditor {
-  overflow-y: scroll;
-}
+/*** Colors ***/
+$primaryBackgroundColor: #ffffff;
+$secondaryBackgroundColor: #eeeeee;
+$navigationTabBackgroundColor: $secondaryBackgroundColor;
+$navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 
 .xpFormHeading {
   display: grid;
@@ -38,11 +38,57 @@ $navigationTabActiveBackgroundColor: #fff;
   height: $logo-width;
 }
 
-/*** Input styling ***/
+/*** Input editor styling ***/
+
+.xpFormEditorContainer {
+  position: relative;
+  background-color: $secondaryBackgroundColor;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 30px;
+}
 
 .xpFormEditorFieldset {
-  padding: 0 10px 0 20px;
+  padding: 10px;
+  background-color: $primaryBackgroundColor;
+  margin-bottom: 10px;
 }
+
+.xpFormEditorFieldset legend {
+  font-size: 14px;
+  color: #777777;
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.xpFormEditorFieldset legend .drag-handle {
+  margin-right: 15px;
+}
+
+.xpFormEditorFieldset > :last-child {
+  margin-bottom: 0;
+}
+
+.xpFormAddInputFieldButton {
+  padding: 0 15px;
+  border: 0;
+  background-color: #999999;
+  color: white;
+  line-height: 24px;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+.xpFormEditorConfigurationHeading {
+  font-size: 25px;
+  line-height:20px;
+  margin-bottom: 30px;
+  box-sizing: content-box;
+  width: 100%;
+}
+
+/*** Input styling ***/
 
 .xpFormEditorLabel {
   display: block;
@@ -81,7 +127,7 @@ $navigationTabActiveBackgroundColor: #fff;
   border: 0;
 
   &:hover, &:focus {
-    border: 1px solid #999;
+    border: 1px solid #999999;
     padding: 1px;
   }
 }
@@ -89,8 +135,9 @@ $navigationTabActiveBackgroundColor: #fff;
 /*** Editor navigation styling ***/
 
 .xpFormEditorNavigation {
-  background-color: #eee;
+  background-color: #eeeeee;
   box-shadow: 0 10px 10px -10px #a1a1a1;
+  margin-bottom: 30px;
 }
 
 .xpFormEditorNavigation li {
@@ -131,12 +178,7 @@ $navigationTabActiveBackgroundColor: #fff;
   }
 }
 
-.xpFormEditorConfigurationHeading {
-  font-size: 25px;
-  line-height:20px;
-  padding-top: 30px;
-  margin-bottom: 30px;
-  box-sizing: content-box;
-  border-bottom: 1px solid #ccc;
-  width: 100%;
+/*** Temporary overrides ***/
+body {
+  overflow-y: initial;
 }

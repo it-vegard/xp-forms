@@ -7,7 +7,10 @@ class EditorFieldset extends React.Component {
   render() {
     return (
       <fieldset className="xpFormEditorFieldset" id={textToName(this.props.legend)}>
-        <legend className="xpFormEditorConfigurationHeading">{this.props.legend}</legend>
+        <legend>
+          <span className="drag-handle">:::</span>
+          {this.props.legend}
+        </legend>
         {this.props.children}
       </fieldset>
     )
@@ -16,8 +19,8 @@ class EditorFieldset extends React.Component {
 }
 
 EditorFieldset.propTypes = {
-  legend: PropTypes.string,
-  children: PropTypes.node
+  legend: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default EditorFieldset;
