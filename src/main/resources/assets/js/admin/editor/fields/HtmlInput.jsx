@@ -19,6 +19,7 @@ class HtmltInput extends React.Component {
         }
         <textarea
           name={textToName(this.props.label)}
+          name={this.props.id || textToName(this.props.label)}
           placeholder={this.props.placeholder}
           className={className}
           required={this.props.required}
@@ -29,6 +30,7 @@ class HtmltInput extends React.Component {
 }
 
 HtmltInput.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,

@@ -20,7 +20,7 @@ class TextInput extends React.Component {
         }
         <input
           type="text"
-          name={textToName(this.props.label)}
+          name={this.props.id || textToName(this.props.label)}
           placeholder={this.props.placeholder}
           className={className}
           required={this.props.required}
@@ -37,6 +37,7 @@ TextInput.Sizes = {
 };
 
 TextInput.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
