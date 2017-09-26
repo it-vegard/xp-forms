@@ -2,7 +2,7 @@ export const textToName = (text) => {
   if (!text) {
     return null;
   } else {
-    return text.replace(' ', '_');
+    return text.replace(' ', '_').toLowerCase();
   }
 };
 
@@ -15,10 +15,3 @@ export const concatClassNames = (...classes) => {
   }
   return actualClasses.join(' ').trim();
 };
-
-const StringUtil = {
-  textToName,
-  concatClassNames
-};
-
-export default StringUtil;
