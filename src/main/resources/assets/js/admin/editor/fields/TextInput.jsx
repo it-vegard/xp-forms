@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
@@ -18,7 +19,8 @@ class TextInput extends React.Component {
           this.props.label &&
           <span>{this.props.label}</span>
         }
-        <input
+        <Field
+          component="input"
           type="text"
           name={this.props.id || textToName(this.props.label)}
           placeholder={this.props.placeholder}

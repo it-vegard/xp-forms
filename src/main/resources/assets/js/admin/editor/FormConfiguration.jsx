@@ -1,4 +1,5 @@
 import React from 'react';
+import { FieldArray } from 'redux-form';
 import InputFieldEditor from './InputFieldEditor';
 import TextInput from "./fields/TextInput";
 import HtmltInput from "./fields/HtmlInput";
@@ -37,7 +38,7 @@ class FormEditor extends React.Component {
           required={true}
         />
         <h2 id={textToName(fieldsets[1])} className="xpFormEditorConfigurationHeading">{fieldsets[1]}</h2>
-        <InputFieldEditor/>
+        <FieldArray component={InputFieldEditor} name="fields"/>
         <h2 id={textToName(fieldsets[2])} className="xpFormEditorConfigurationHeading">{fieldsets[2]}</h2>
         <TextInput
           id="overrideSubmitUrl"

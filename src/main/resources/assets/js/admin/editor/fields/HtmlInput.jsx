@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
@@ -17,8 +18,8 @@ class HtmltInput extends React.Component {
           this.props.label &&
           <span>{this.props.label}</span>
         }
-        <textarea
-          name={textToName(this.props.label)}
+        <Field
+          component="textarea"
           name={this.props.id || textToName(this.props.label)}
           placeholder={this.props.placeholder}
           className={className}

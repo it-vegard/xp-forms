@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import FormEditorForm from './FormEditorForm';
 import FormHeader from "./FormHeader";
 import FormConfiguration from './FormConfiguration';
 import FormEditorCss from '../../../scss/admin/editor/form-editor.scss';
@@ -13,10 +14,10 @@ class FormEditor extends React.Component {
   render() {
     return (
       <section id="xpFormsEditor">
-        <form>
+        <FormEditorForm initialValues={this.props.form}>
           <FormHeader/>
           <FormConfiguration/>
-        </form>
+        </FormEditorForm>
       </section>
     )
   }
