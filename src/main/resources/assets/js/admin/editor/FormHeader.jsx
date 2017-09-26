@@ -10,13 +10,13 @@ class FormHeader extends React.Component {
         <img src={assetUrl('img/icons/adminFavicon.png')} className="xpform-logo"/>
         <div className="xpFormHeadingMain">
           <TextInput
-            id="formTitle"
+            id="displayName"
             placeholder="<Display name>"
             size={TextInput.Sizes.LARGE}
             required={true}
           />
           <TextInput
-            id="formName"
+            id="id"
             placeholder="<name>"
             size={TextInput.Sizes.SMALL}
             required={true}
