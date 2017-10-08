@@ -2,40 +2,80 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 const NEW_FORM = {
-  id: "new-form",
-  displayName: "New form",
-  title: "Hello World",
-  submitButton: "Submit",
-  successMessage: "Thanks for submitting",
-  overrideSubmitUrl: "http://localhost:8080",
-  overrideSubmitMethod: "GET",
+  id: null,
+  displayName: null,
+  title: null,
+  submitButton: null,
+  successMessage: null,
+  overrideSubmitUrl: null,
+  overrideSubmitMethod: null,
   fields: [
     {
-      label: "Label",
-      id: "label"
+      label: null,
+      id: null,
     },
     {
-      label: "Name",
-      id: "name"
+      label: null,
+      id: null
     }
   ]
 };
 
-function editor(state = NEW_FORM, action) {
- switch (action.type) {
-   case "CREATE_NEW" :
-     return NEW_FORM;
-   default :
-     return state;
- }
+function appReducer(state={ editor: { isLoading: false, form: null }, formStudio: { isLoading: false, forms: [] } }, action) {
+  switch (action.type) {
+    case "CREATE_FORM" :
+      return {
+        ...state,
+        editor: {
+          isLoading: false,
+          form: NEW_FORM
+        }
+      };
+    case "LOADING_FORM" :
+      return {
+        ...state,
+        editor: {
+          isLoading: true,
+          form: null
+        }
+      };
+    case "RECEIVE_FORM" :
+      return {
+        ...state,
+        editor: {
+          isLoading: false,
+          form: action.form
+        }
+      };
+    case "LOADING_FORMS" :
+      return {
+        ...state,
+        formStudio: {
+          isLoading: true,
+          forms: []
+        }
+      };
+    case "RECEIVE_FORMS" :
+      return {
+        ...state,
+        formStudio: {
+          isLoading: false,
+          forms: action.forms
+        }
+      };
+    default :
+      return state;
+  }
 }
 
-function formStudio(state = [ NEW_FORM.id ], action) {
+function formStudioReducer(state = { forms: [] }, action) {
   switch (action.type) {
     case "CREATE_NEW" :
+      return state;
+    case "RECEIVE_FORMS" :
       return [
         ...state,
-        NEW_FORM.id
+        ...action.forms
       ];
     default:
       return state;
@@ -43,9 +83,9 @@ function formStudio(state = [ NEW_FORM.id ], action) {
 }
 
 const FormAdminApp = combineReducers({
-  editor,
-  formStudio,
-  form: formReducer
+  forms: formStudioReducer,
+  form: formReducer,
+  app: appReducer
 });
 
 export default FormAdminApp;

@@ -1,20 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import FormEditorForm from './FormEditorForm';
 import FormHeader from "./FormHeader";
 import FormConfiguration from './FormConfiguration';
 import FormEditorCss from '../../../scss/admin/editor/form-editor.scss';
+import { loadForm } from "../actions";
 
 function mapStateToProps(state) {
-  return { form: state.editor }
+  return {
+    formId: state.forms[0] ? state.forms[0].id : null,
+    form: state.app.editor.form,
+    isLoading: state.app.editor.isLoading
+  }
 }
 
-class FormEditor extends React.Component {
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoad: (id) => {
+      dispatch(loadForm(id))
+    }
+  };
+}
 
-  render() {
+let FormEditor = (props) => {
+
+  if (props.isLoading === true) {
+    return (
+      <p>Loading...</p>
+    )
+  } else if (!props.form  && props.formId) {
+    props.onLoad(props.formId);
+    return (
+      <p>Loading...</p>
+    )
+  } else {
     return (
       <section id="xpFormsEditor">
-        <FormEditorForm initialValues={this.props.form}>
+        <FormEditorForm initialValues={props.form}>
           <FormHeader/>
           <FormConfiguration/>
         </FormEditorForm>
@@ -22,6 +45,11 @@ class FormEditor extends React.Component {
     )
   }
 
-}
+};
 
-export default connect(mapStateToProps)(FormEditor);
+FormEditor.propTypes = {
+  formId: PropTypes.string,
+  form: PropTypes.object
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormEditor);
