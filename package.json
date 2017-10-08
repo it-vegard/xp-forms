@@ -3,12 +3,13 @@
   "version": "0.1.0-SNAPSHOT",
   "description": "Welcome to your brand new enonic XP app!",
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-form": "^7.0.4"
+    "redux-form": "^7.1.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
