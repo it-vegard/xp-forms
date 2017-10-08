@@ -76,10 +76,10 @@ task webpack(type: NodeTask) {
 
 task copyTask(type: Copy) {
     from 'src/main/resources/application.svg'
-    into 'build/resources/main/admin/tools/forms-admin/'
+    into 'build/resources/main/admin/tools/main/'
     rename (
         'application.svg',
-        'forms-admin.svg'
+        'main.svg'
     )
 }
 

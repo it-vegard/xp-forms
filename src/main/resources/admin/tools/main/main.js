@@ -5,7 +5,7 @@ var timestamp = Date.now();
 
 function handleGet() {
 
-  var view = resolve('./forms-admin.html');
+  var view = resolve('./main.html');
 
   var model = {
     formBuilderAdmin: {
