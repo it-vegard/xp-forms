@@ -16,66 +16,66 @@ const NEW_FORM = {
     },
     {
       label: null,
-      id: null
-    }
-  ]
+      id: null,
+    },
+  ],
 };
 
-function appReducer(state={ editor: { isLoading: false, form: null }, formStudio: { isLoading: false, forms: [] } }, action) {
+function appReducer(state = { editor: { isLoading: false, form: null }, formStudio: { isLoading: false, forms: [] } }, action) {
   switch (action.type) {
-    case "CREATE_FORM" :
+    case 'CREATE_FORM':
       return {
         ...state,
         editor: {
           isLoading: false,
-          form: NEW_FORM
-        }
+          form: NEW_FORM,
+        },
       };
-    case "LOADING_FORM" :
+    case 'LOADING_FORM':
       return {
         ...state,
         editor: {
           isLoading: true,
-          form: null
-        }
+          form: null,
+        },
       };
-    case "RECEIVE_FORM" :
+    case 'RECEIVE_FORM':
       return {
         ...state,
         editor: {
           isLoading: false,
-          form: action.form
-        }
+          form: action.form,
+        },
       };
-    case "LOADING_FORMS" :
+    case 'LOADING_FORMS':
       return {
         ...state,
         formStudio: {
           isLoading: true,
-          forms: []
-        }
+          forms: [],
+        },
       };
-    case "RECEIVE_FORMS" :
+    case 'RECEIVE_FORMS':
       return {
         ...state,
         formStudio: {
           isLoading: false,
-          forms: action.forms
-        }
+          forms: action.forms,
+        },
       };
-    default :
+    default:
       return state;
   }
 }
 
 function formStudioReducer(state = { forms: [] }, action) {
   switch (action.type) {
-    case "CREATE_NEW" :
+    case 'CREATE_NEW':
       return state;
-    case "RECEIVE_FORMS" :
+    case 'RECEIVE_FORMS':
       return [
         ...state,
-        ...action.forms
+        ...action.forms,
       ];
     default:
       return state;
@@ -85,7 +85,7 @@ function formStudioReducer(state = { forms: [] }, action) {
 const FormAdminApp = combineReducers({
   forms: formStudioReducer,
   form: formReducer,
-  app: appReducer
+  app: appReducer,
 });
 
 export default FormAdminApp;

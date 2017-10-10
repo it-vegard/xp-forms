@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
 class HtmltInput extends React.Component {
-
   render() {
     const className = concatClassNames(
       'xpFormInput xpFormHtmlInput',
       (!this.props.label ? 'noLabel ' : null),
-      this.props.className
+      this.props.className,
     );
 
     return (
@@ -35,7 +34,7 @@ HtmltInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
 };
 
 export default HtmltInput;

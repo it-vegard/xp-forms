@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
 class TextInput extends React.Component {
-
   render() {
     const className = concatClassNames(
       'xpFormInput xpFormTextInput',
       (!this.props.label ? 'noLabel' : null),
       (this.props.size ? this.props.size : null),
-      (this.props.className ? this.props.className : null)
+      (this.props.className ? this.props.className : null),
     );
 
     return (
@@ -33,9 +32,9 @@ class TextInput extends React.Component {
 }
 
 TextInput.Sizes = {
-  SMALL: "smallSize",
-  NORMAL: "normalSize",
-  LARGE: "largeSize"
+  SMALL: 'smallSize',
+  NORMAL: 'normalSize',
+  LARGE: 'largeSize',
 };
 
 TextInput.propTypes = {
@@ -46,9 +45,9 @@ TextInput.propTypes = {
   size: PropTypes.oneOf([
     TextInput.Sizes.SMALL,
     TextInput.Sizes.NORMAL,
-    TextInput.Sizes.LARGE
+    TextInput.Sizes.LARGE,
   ]),
-  required: PropTypes.bool
+  required: PropTypes.bool,
 };
 
 export default TextInput;
