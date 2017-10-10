@@ -70,13 +70,8 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 }
 
 .xpFormAddInputFieldButton {
+  @extend .formButton;
   padding: 0 15px;
-  border: 0;
-  background-color: #999999;
-  color: white;
-  line-height: 24px;
-  font-size: 14px;
-  font-family: "Open Sans", sans-serif;
 
 }
 
@@ -130,6 +125,16 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
     border: 1px solid #999999;
     padding: 1px;
   }
+}
+
+.formButton {
+  padding: 4px 19px;
+  border: 0;
+  background-color: #999999;
+  color: white;
+  line-height: 24px;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
 }
 
 /*** Editor navigation styling ***/

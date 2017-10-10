@@ -44,3 +44,33 @@ export function receiveForm(form) {
     form
   }
 }
+
+export function submitForm(values, id) {
+  return dispatch => {
+    dispatch(submittingForm(values));
+    const path = id ? `form?id=${id}` : 'form';
+    return fetch(serviceUrl(path), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({values: values})
+      })
+      .then(response => response.json())
+      .then(json => {dispatch(savedForm(json))})
+  }
+}
+
+export function submittingForm(form) {
+  return {
+    type: 'SUBMITTING_FORM',
+    form
+  }
+}
+
+export function savedForm(response) {
+  return {
+    type: 'SAVED_FORM',
+    response
+  }
+}

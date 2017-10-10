@@ -37,9 +37,10 @@ let FormEditor = (props) => {
   } else {
     return (
       <section id="xpFormsEditor">
-        <FormEditorForm initialValues={props.form}>
+        <FormEditorForm formId={props.formId} initialValues={props.form}>
           <FormHeader/>
           <FormConfiguration/>
+          <button type="submit" className="formButton">Submit</button>
         </FormEditorForm>
       </section>
     )

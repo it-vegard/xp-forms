@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Form } from 'redux-form';
+import { submitForm } from "../actions";
 
 function mapStateToProps(state) {
   return { form: state.editor }
@@ -10,16 +11,21 @@ function mapStateToProps(state) {
 class FormEditorForm extends React.Component {
 
   render() {
+    const formSubmitHandler = (values, dispatch, props) => {
+      dispatch(submitForm(values, props.formId));
+    };
     return (
-      <form>
+      <Form onSubmit={this.props.handleSubmit(formSubmitHandler)}>
         {this.props.children}
-      </form>
+      </Form>
     )
   }
 
 }
 
 FormEditorForm.propTypes = {
+  formId: PropTypes.string,
+  formSubmitHandler: PropTypes.func,
   initialValues: PropTypes.object
 };
 
