@@ -15,7 +15,7 @@ module.exports = {
   },
   resolve: {
     extensions: [
-      '.js', '.jsx'
+      '.js', '.jsx', '.scss'
     ]
   },
   module: {
@@ -29,6 +29,9 @@ module.exports = {
           presets: [
             'env',
             'react'
+          ],
+          plugins: [
+            'transform-object-rest-spread'
           ]
         }
       },
