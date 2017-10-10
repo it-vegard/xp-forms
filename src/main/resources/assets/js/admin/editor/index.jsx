@@ -23,30 +23,34 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-let FormEditor = (props) => {
+class FormEditor extends React.Component {
 
-  if (props.isLoading === true) {
-    return (
-      <p>Loading...</p>
-    )
-  } else if (!props.form  && props.formId) {
-    props.onLoad(props.formId);
-    return (
-      <p>Loading...</p>
-    )
-  } else {
-    return (
-      <section id="xpFormsEditor">
-        <FormEditorForm formId={props.formId} initialValues={props.form}>
-          <FormHeader/>
-          <FormConfiguration/>
-          <button type="submit" className="formButton">Submit</button>
-        </FormEditorForm>
-      </section>
-    )
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.form  && !this.props.formId && nextProps.formId) {
+      this.props.onLoad(nextProps.formId);
+    }
   }
 
-};
+  render() {
+
+    if (this.props.isLoading === true || !this.props.form) {
+      return (
+        <p>Loading...</p>
+      )
+    } else {
+      return (
+        <section id="xpFormsEditor">
+          <FormEditorForm formId={this.props.formId} initialValues={this.props.form}>
+            <FormHeader/>
+            <FormConfiguration/>
+            <button type="submit" className="formButton">Submit</button>
+          </FormEditorForm>
+        </section>
+      )
+    }
+  }
+
+}
 
 FormEditor.propTypes = {
   formId: PropTypes.string,
