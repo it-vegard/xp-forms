@@ -8,23 +8,36 @@ function mapStateToProps(state) {
   return { form: state.editor };
 }
 
-class FormEditorForm extends React.Component {
-  render() {
-    const formSubmitHandler = (values, dispatch, props) => {
-      dispatch(submitForm(values, props.formId));
-    };
-    return (
-      <Form onSubmit={this.props.handleSubmit(formSubmitHandler)}>
-        {this.props.children}
-      </Form>
-    );
-  }
-}
+const formSubmitHandler = (values, dispatch, props) => {
+  dispatch(submitForm(values, props.formId));
+};
+
+let FormEditorForm = props => (
+  <Form onSubmit={props.handleSubmit(formSubmitHandler)}>
+    {props.children}
+  </Form>
+);
 
 FormEditorForm.propTypes = {
-  formId: PropTypes.string,
-  formSubmitHandler: PropTypes.func,
-  initialValues: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  children: PropTypes.arrayOf(PropTypes.object),
+  /* formSubmitHandler: PropTypes.func, */
+  /* initialValues: PropTypes.shape({
+    type: PropTypes.string,
+    config: PropTypes.shape({
+      id: PropTypes.string,
+      displayName: PropTypes.string,
+      title: PropTypes.string,
+      submitButton: PropTypes.string,
+      successMessage: PropTypes.string,
+      overrideSubmitMethod: PropTypes.string,
+      overrideSubmitUrl: PropTypes.string,
+      fields: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string,
+        id: PropTypes.string,
+      })),
+    }),
+  }), */
 };
 
 FormEditorForm = connect(mapStateToProps)(FormEditorForm);

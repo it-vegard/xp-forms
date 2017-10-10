@@ -21,7 +21,18 @@ const NEW_FORM = {
   ],
 };
 
-function appReducer(state = { editor: { isLoading: false, form: null }, formStudio: { isLoading: false, forms: [] } }, action) {
+const DEFAULT_APP_STATE = {
+  editor: {
+    isLoading: false,
+    form: null,
+  },
+  formStudio: {
+    isLoading: false,
+    forms: [],
+  },
+};
+
+function appReducer(state = DEFAULT_APP_STATE, action) {
   switch (action.type) {
     case 'CREATE_FORM':
       return {

@@ -1,42 +1,42 @@
-var path = require('path');
+const path = require('path');
 
-var paths = {
-  assets: 'src/main/resources/assets/'
+const paths = {
+  assets: 'src/main/resources/assets/',
 };
 
 module.exports = {
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
-    'formsAdmin.css': './scss/formsAdmin.scss'
+    'formsAdmin.css': './scss/formsAdmin.scss',
   },
   output: {
     path: path.join(__dirname, 'build/resources/main/assets/'),
-    filename: '[name]'
+    filename: '[name]',
   },
   resolve: {
     extensions: [
-      '.js', '.jsx', '.scss'
-    ]
+      '.js', '.jsx', '.scss',
+    ],
   },
   module: {
     rules: [
 
       {
         test: /\.jsx?$/,
-        enforce: "pre",
+        enforce: 'pre',
         use: [
           {
             loader: 'eslint-loader',
             options: {
               cache: true,
               fix: true
-            }
-          }
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
-      
+
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
@@ -46,33 +46,33 @@ module.exports = {
             options: {
               presets: [
                 'env',
-                'react'
+                'react',
               ],
               plugins: [
-                'transform-object-rest-spread'
-              ]
-            }
-          }
-        ]
+                'transform-object-rest-spread',
+              ],
+            },
+          },
+        ],
       },
-      
-      
+
+
       {
         test: /\.scss$/,
         exclude: /(node_modules)/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader',
           },
           {
-            loader: "sass-loader"
-          }
-        ]
-      }
-      
-    ]
-  }
+            loader: 'sass-loader',
+          },
+        ],
+      },
+
+    ],
+  },
 };

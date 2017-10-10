@@ -3,33 +3,35 @@ import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
-class TextInput extends React.Component {
-  render() {
-    const className = concatClassNames(
-      'xpFormInput xpFormTextInput',
-      (!this.props.label ? 'noLabel' : null),
-      (this.props.size ? this.props.size : null),
-      (this.props.className ? this.props.className : null),
-    );
+const TextInput = (props) => {
+  const className = concatClassNames(
+    'xpFormInput xpFormTextInput',
+    (!props.label ? 'noLabel' : null),
+    (props.size ? props.size : null),
+    (props.className ? props.className : null),
+  );
 
-    return (
-      <label className="xpFormEditorLabel">
-        {
-          this.props.label &&
-          <span>{this.props.label}</span>
-        }
-        <Field
-          component="input"
-          type="text"
-          name={this.props.id || textToName(this.props.label)}
-          placeholder={this.props.placeholder}
-          className={className}
-          required={this.props.required}
-        />
-      </label>
-    );
-  }
-}
+  return (
+    <label
+      htmlFor={props.id || textToName(props.label)}
+      className="xpFormEditorLabel"
+    >
+      {
+        props.label &&
+        <span>{props.label}</span>
+      }
+      <Field
+        component="input"
+        id={props.id || textToName(props.label)}
+        type="text"
+        name={props.id || textToName(props.label)}
+        placeholder={props.placeholder}
+        className={className}
+        required={props.required}
+      />
+    </label>
+  );
+};
 
 TextInput.Sizes = {
   SMALL: 'smallSize',

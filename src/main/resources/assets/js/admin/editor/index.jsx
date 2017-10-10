@@ -49,7 +49,24 @@ class FormEditor extends React.Component {
 
 FormEditor.propTypes = {
   formId: PropTypes.string,
-  form: PropTypes.object,
+  form: PropTypes.shape({
+    type: PropTypes.string,
+    config: PropTypes.shape({
+      id: PropTypes.string,
+      displayName: PropTypes.string,
+      title: PropTypes.string,
+      submitButton: PropTypes.string,
+      successMessage: PropTypes.string,
+      overrideSubmitMethod: PropTypes.string,
+      overrideSubmitUrl: PropTypes.string,
+      fields: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string,
+        id: PropTypes.string,
+      })),
+    }),
+  }),
+  isLoading: PropTypes.bool,
+  onLoad: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormEditor);

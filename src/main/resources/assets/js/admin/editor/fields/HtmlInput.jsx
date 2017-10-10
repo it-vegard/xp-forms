@@ -3,33 +3,35 @@ import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { textToName, concatClassNames } from '../../util/StringUtil';
 
-class HtmltInput extends React.Component {
-  render() {
-    const className = concatClassNames(
-      'xpFormInput xpFormHtmlInput',
-      (!this.props.label ? 'noLabel ' : null),
-      this.props.className,
-    );
+const HtmlInput = (props) => {
+  const className = concatClassNames(
+    'xpFormInput xpFormHtmlInput',
+    (!props.label ? 'noLabel ' : null),
+    props.className,
+  );
 
-    return (
-      <label className="xpFormEditorLabel">
-        {
-          this.props.label &&
-          <span>{this.props.label}</span>
-        }
-        <Field
-          component="textarea"
-          name={this.props.id || textToName(this.props.label)}
-          placeholder={this.props.placeholder}
-          className={className}
-          required={this.props.required}
-        />
-      </label>
-    );
-  }
-}
+  return (
+    <label
+      htmlFor={props.id || textToName(props.label)}
+      className="xpFormEditorLabel"
+    >
+      {
+        props.label &&
+        <span>{props.label}</span>
+      }
+      <Field
+        component="textarea"
+        id={props.id || textToName(props.label)}
+        name={props.id || textToName(props.label)}
+        placeholder={props.placeholder}
+        className={className}
+        required={props.required}
+      />
+    </label>
+  );
+};
 
-HtmltInput.propTypes = {
+HtmlInput.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
@@ -37,4 +39,4 @@ HtmltInput.propTypes = {
   required: PropTypes.bool,
 };
 
-export default HtmltInput;
+export default HtmlInput;
