@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import FormEditorForm from './FormEditorForm';
 import FormHeader from "./FormHeader";
 import FormConfiguration from './FormConfiguration';
-import FormEditorCss from '../../../scss/admin/editor/form-editor.scss';
 import { loadForm } from "../actions";
 
 function mapStateToProps(state) {
