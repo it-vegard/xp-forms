@@ -5,7 +5,6 @@ import thunkMiddleware from 'redux-thunk';
 import FormEditor from './editor';
 import FormAdminApp from './reducers';
 import { loadForms } from './actions';
-import FormEditorCss from '../../scss/admin/editor/form-editor.scss';
 
 const store = createStore(
   FormAdminApp,

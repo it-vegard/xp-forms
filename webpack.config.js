@@ -1,14 +1,12 @@
 const path = require('path');
-
-const paths = {
-  assets: 'src/main/resources/assets/',
-};
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
-    'formsAdmin.css': './scss/formsAdmin.scss',
+    './css/bundle.css': './scss/formsAdmin.scss',
   },
   output: {
     path: path.join(__dirname, 'build/resources/main/assets/'),
@@ -30,7 +28,7 @@ module.exports = {
             loader: 'eslint-loader',
             options: {
               cache: true,
-              fix: true
+              fix: true,
             },
           },
         ],
@@ -56,23 +54,23 @@ module.exports = {
         ],
       },
 
-
       {
         test: /\.scss$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
 
     ],
   },
+  plugins: [
+    new ExtractTextPlugin('formsAdmin.css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /formsAdmin\.css$/,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true,
+    }),
+  ],
 };
