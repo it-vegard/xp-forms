@@ -1,48 +1,84 @@
-var path = require('path');
-
-var paths = {
-  assets: 'src/main/resources/assets/'
-};
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
+  context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
-    'formsAdmin.js': path.join(__dirname, paths.assets, 'js', 'formsAdmin.jsx'),
-    'formsAdmin.css': path.join(__dirname, paths.assets, 'scss', 'formsAdmin.scss')
+    'formsAdmin.js': './js/formsAdmin.jsx',
+    './css/bundle.css': './scss/formsAdmin.scss',
   },
   output: {
     path: path.join(__dirname, 'build/resources/main/assets/'),
-    filename: '[name]'
+    filename: '[name]',
   },
   resolve: {
     extensions: [
-      '.js', '.jsx', '.scss'
-    ]
+      '.js', '.jsx', '.scss',
+    ],
   },
   module: {
-    loaders: [
-      
+    rules: [
+
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              cache: true,
+              fix: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            'env',
-            'react'
-          ],
-          plugins: [
-            'transform-object-rest-spread'
-          ]
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                'env',
+                'react',
+              ],
+              plugins: [
+                'transform-object-rest-spread',
+              ],
+            },
+          },
+        ],
       },
-      
-      
+
       {
         test: /\.scss$/,
-        exclude: /(node_modules)/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
-      }
-      
-    ]
-  }
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+        }),
+      },
+
+    ],
+  },
+  plugins: [
+    new ExtractTextPlugin('formsAdmin.css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /formsAdmin\.css$/,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true,
+    }),
+    new UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      sourceMap: true,
+      extractComments: true,
+    }),
+  ],
 };

@@ -2,35 +2,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Form } from 'redux-form';
-import { submitForm } from "../actions";
+import { submitForm } from '../actions';
 
 function mapStateToProps(state) {
-  return { form: state.editor }
+  return { form: state.editor };
 }
 
-class FormEditorForm extends React.Component {
+const formSubmitHandler = (values, dispatch, props) => {
+  dispatch(submitForm(values, props.formId));
+};
 
-  render() {
-    const formSubmitHandler = (values, dispatch, props) => {
-      dispatch(submitForm(values, props.formId));
-    };
-    return (
-      <Form onSubmit={this.props.handleSubmit(formSubmitHandler)}>
-        {this.props.children}
-      </Form>
-    )
-  }
-
-}
+let FormEditorForm = props => (
+  <Form onSubmit={props.handleSubmit(formSubmitHandler)}>
+    {props.children}
+  </Form>
+);
 
 FormEditorForm.propTypes = {
-  formId: PropTypes.string,
-  formSubmitHandler: PropTypes.func,
-  initialValues: PropTypes.object
+  handleSubmit: PropTypes.func,
+  children: PropTypes.arrayOf(PropTypes.object),
+  /* formSubmitHandler: PropTypes.func, */
+  /* initialValues: PropTypes.shape({
+    type: PropTypes.string,
+    config: PropTypes.shape({
+      id: PropTypes.string,
+      displayName: PropTypes.string,
+      title: PropTypes.string,
+      submitButton: PropTypes.string,
+      successMessage: PropTypes.string,
+      overrideSubmitMethod: PropTypes.string,
+      overrideSubmitUrl: PropTypes.string,
+      fields: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string,
+        id: PropTypes.string,
+      })),
+    }),
+  }), */
 };
 
 FormEditorForm = connect(mapStateToProps)(FormEditorForm);
 
 export default reduxForm({
-  form: 'formeditor'
+  form: 'formeditor',
 }, mapStateToProps)(FormEditorForm);
