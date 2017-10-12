@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import EditorFieldset from './fields/EditorFieldset';
 import TextInput from './fields/TextInput';
 
-const InputFieldEditor = props => (
+const InputFieldEditor = ({ fields }) => (
   <div className="xpFormEditorContainer">
-    {props.fields.map((field, index) => (
+    {fields.map((field, index) => (
       <EditorFieldset key={field.id || index} legend="New input field">
         <TextInput
           id={`${field}.label`}
@@ -22,7 +22,7 @@ const InputFieldEditor = props => (
     <button
       className="xpFormAddInputFieldButton"
       onClick={() => {
-        props.fields.push({});
+        fields.push({});
       }}
     >Add Input Field
     </button>
@@ -30,7 +30,7 @@ const InputFieldEditor = props => (
 );
 
 InputFieldEditor.propTypes = {
-  fields: PropTypes.arrayOf({
+  fields: PropTypes.shape({
     id: PropTypes.string,
     label: PropTypes.string,
   }),
