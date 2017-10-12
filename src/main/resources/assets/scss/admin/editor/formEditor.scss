@@ -2,8 +2,6 @@ $logo-width: 64px;
 $default-margin-right: 25px;
 $default-margin-bottom: 10px;
 $minimum-click-size: 45px;
-$default-input-padding: 5px;
-$default-input-font-size: 16px;
 $navigationTabArrowHeight: 21px;
 
 /*** Colors ***/
@@ -13,6 +11,10 @@ $navigationTabBackgroundColor: $secondaryBackgroundColor;
 $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 
 @import "formEditorHeading";
+
+.xpFormEditorForm {
+  padding-top: 15px
+}
 
 .xpFormEditorContainer {
   position: relative;
@@ -43,6 +45,11 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   margin-bottom: 0;
 }
 
+.xpFormEditorConfiguration {
+  padding-left: 25px;
+  padding-right: 60px;
+}
+
 .xpFormEditorConfigurationHeading {
   font-size: 25px;
   line-height:20px;
@@ -51,6 +58,7 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   width: 100%;
 }
 
+@import "formEditorToolbar";
 
 @import "formEditorNavigation";
 

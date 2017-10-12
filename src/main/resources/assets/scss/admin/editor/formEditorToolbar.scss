@@ -1,0 +1,44 @@
+$logo-width: 28px;
+$default-margin-right: 25px;
+$default-margin-bottom: 10px;
+$button-text: #777777;
+
+/*** Editor toolbar styling ***/
+
+.xpFormEditorToolbar {
+  display: grid;
+  grid-template-columns: $logo-width auto;
+  grid-template-rows: auto;
+  grid-template-areas: "logo editorcontrols";
+  // grid-gap: $default-margin-bottom $default-margin-right;
+  height: 44px;
+  padding-left: 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.xpFormEditorToolbar .xpFormLogo {
+  grid-area: logo;
+  width: $logo-width;
+  height: $logo-width;
+  margin: auto;
+}
+
+.xpFormEditorToolbar .xpFormEditorControls {
+  grid-area: editorcontrols;
+  display: block;
+}
+
+.xpFormEditorControls__item {
+  display: inline-block;
+  line-height: 44px;
+  padding: 0 14px;
+}
+
+.xpFormEditorControls__button {
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: $button-text;
+  padding: 0;
+}

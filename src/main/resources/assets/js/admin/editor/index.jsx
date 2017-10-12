@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FormEditorForm from './FormEditorForm';
+import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import { loadForm } from '../actions';
@@ -37,10 +38,10 @@ class FormEditor extends React.Component {
     }
     return (
       <section id="xpFormsEditor">
+        <FormEditorToolbar />
         <FormEditorForm formId={this.props.formId} initialValues={this.props.form}>
           <FormHeader />
           <FormConfiguration />
-          <button type="submit" className="formButton">Submit</button>
         </FormEditorForm>
       </section>
     );
