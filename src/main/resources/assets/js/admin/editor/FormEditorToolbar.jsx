@@ -32,7 +32,7 @@ const FormEditorToolbar = () => (
           id="xpFormEditorDeleteButton"
           className="xpFormEditorControls__button"
         >
-          Delete
+          Delete...
         </button>
       </li>
       <li className="xpFormEditorControls__item">

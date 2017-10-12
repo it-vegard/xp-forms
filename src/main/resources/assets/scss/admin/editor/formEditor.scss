@@ -10,11 +10,32 @@ $secondaryBackgroundColor: #eeeeee;
 $navigationTabBackgroundColor: $secondaryBackgroundColor;
 $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 
-@import "formEditorHeading";
+/*** Editor framework ***/
 
-.xpFormEditorForm {
-  padding-top: 15px
+@media screen and (min-width: 768px) {
+
+  .xpFormEditorForm {
+    display: inline-block;
+    float: left;
+    width: 550px;
+    min-width: 400px;
+    overflow-y: scroll;
+    resize: horizontal;
+    height: calc(100vh - 90px);
+    padding-top: 15px;
+    padding-bottom: 45px;
+  }
+
+  .xpFormPreview {
+    height: calc(100vh - 45px);
+    overflow: hidden;
+  }
+
 }
+
+/*** Form editor ***/
+
+@import "formEditorHeading";
 
 .xpFormEditorContainer {
   position: relative;
@@ -63,6 +84,6 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 @import "formEditorNavigation";
 
 /*** Temporary overrides ***/
-body {
+/* body {
   overflow-y: initial;
-}
+} */

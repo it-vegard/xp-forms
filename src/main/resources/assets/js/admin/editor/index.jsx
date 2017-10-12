@@ -5,6 +5,7 @@ import FormEditorForm from './FormEditorForm';
 import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
+import FormPreview from './preview/FormPreview';
 import { loadForm } from '../actions';
 
 function mapStateToProps(state) {
@@ -43,6 +44,7 @@ class FormEditor extends React.Component {
           <FormHeader />
           <FormConfiguration />
         </FormEditorForm>
+        <FormPreview />
       </section>
     );
   }
