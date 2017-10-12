@@ -12,33 +12,7 @@ $secondaryBackgroundColor: #eeeeee;
 $navigationTabBackgroundColor: $secondaryBackgroundColor;
 $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 
-.xpFormHeading {
-  display: grid;
-  grid-template-columns: $logo-width auto;
-  grid-template-rows: auto;
-  grid-template-areas: "logo main" "logo main";
-  grid-gap: $default-margin-bottom $default-margin-right;
-  padding: 0 $default-margin-right;
-}
-
-.xpFormHeading .xpform-logo {
-  grid-area: "logo";
-}
-
-.xpFormHeading .xpFormHeadingMain {
-  grid-area: "main";
-}
-
-.xpFormHeading .xpFormEditorLabel {
-  margin-bottom: 0;
-}
-
-.xpform-logo {
-  width: $logo-width;
-  height: $logo-width;
-}
-
-/*** Input editor styling ***/
+@import "formEditorHeading";
 
 .xpFormEditorContainer {
   position: relative;
@@ -69,12 +43,6 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   margin-bottom: 0;
 }
 
-.xpFormAddInputFieldButton {
-  @extend .formButton;
-  padding: 0 15px;
-
-}
-
 .xpFormEditorConfigurationHeading {
   font-size: 25px;
   line-height:20px;
@@ -83,105 +51,8 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   width: 100%;
 }
 
-/*** Input styling ***/
 
-.xpFormEditorLabel {
-  display: block;
-  margin-bottom: 30px;
-}
-
-.xpFormInput {
-  border: 1px solid #98c9f2;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 4px 10px;
-  line-height: 16px;
-}
-
-.xpFormTextInput {
-  height: 37px;
-}
-
-.xpFormTextInput.largeSize {
-  font-size: $default-input-font-size * 2;
-}
-
-.xpFormTextInput.normalSize {
-  font-size: $default-input-font-size * 1.5;
-}
-
-.xpFormTextInput.smallSize {
-  font-size: $default-input-font-size;
-}
-
-.xpFormHtmlInput {
-  min-height: 52px;
-}
-
-.xpFormInput.noLabel {
-  border: 0;
-
-  &:hover, &:focus {
-    border: 1px solid #999999;
-    padding: 1px;
-  }
-}
-
-.formButton {
-  padding: 4px 19px;
-  border: 0;
-  background-color: #999999;
-  color: white;
-  line-height: 24px;
-  font-size: 14px;
-  font-family: "Open Sans", sans-serif;
-}
-
-/*** Editor navigation styling ***/
-
-.xpFormEditorNavigation {
-  background-color: #eeeeee;
-  box-shadow: 0 10px 10px -10px #a1a1a1;
-  margin-bottom: 30px;
-}
-
-.xpFormEditorNavigation li {
-  display: inline-block;
-  font-size: $default-input-font-size;
-  line-height: 42px;
-  padding: 0 $navigationTabArrowHeight;
-  text-align: center;
-
-  &:hover a, &:focus a {
-    color: darken(#acacac, 20%);
-  }
-}
-
-.xpFormEditorNavigation li.active {
-  background-color: $navigationTabActiveBackgroundColor;
-
-  &:before, &:after {
-    display: block;
-  }
-
-  &:before {
-    content: " ";
-    float: left;
-    margin-left: -$navigationTabArrowHeight;
-    border-top: $navigationTabArrowHeight solid transparent;
-    border-bottom: $navigationTabArrowHeight solid transparent;
-    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabBackgroundColor;
-  }
-
-  &:after {
-    content: " ";
-    float: right;
-    margin-right: -$navigationTabArrowHeight;
-    border-top: $navigationTabArrowHeight solid #eee;
-    border-bottom: $navigationTabArrowHeight solid #eee;
-    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabActiveBackgroundColor;
-  }
-}
+@import "formEditorNavigation";
 
 /*** Temporary overrides ***/
 body {

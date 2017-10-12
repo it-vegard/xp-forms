@@ -1,0 +1,45 @@
+/*** Editor navigation styling ***/
+
+.xpFormEditorNavigation {
+  background-color: #eeeeee;
+  box-shadow: 0 10px 10px -10px #a1a1a1;
+  margin-bottom: 30px;
+}
+
+.xpFormEditorNavigation li {
+  display: inline-block;
+  font-size: $default-input-font-size;
+  line-height: 42px;
+  padding: 0 $navigationTabArrowHeight;
+  text-align: center;
+
+  &:hover a, &:focus a {
+    color: darken(#acacac, 20%);
+  }
+}
+
+.xpFormEditorNavigation li.active {
+  background-color: $navigationTabActiveBackgroundColor;
+
+  &:before, &:after {
+    display: block;
+  }
+
+  &:before {
+    content: " ";
+    float: left;
+    margin-left: -$navigationTabArrowHeight;
+    border-top: $navigationTabArrowHeight solid transparent;
+    border-bottom: $navigationTabArrowHeight solid transparent;
+    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabBackgroundColor;
+  }
+
+  &:after {
+    content: " ";
+    float: right;
+    margin-right: -$navigationTabArrowHeight;
+    border-top: $navigationTabArrowHeight solid #eee;
+    border-bottom: $navigationTabArrowHeight solid #eee;
+    border-left: ($navigationTabArrowHeight / 2) solid $navigationTabActiveBackgroundColor;
+  }
+}

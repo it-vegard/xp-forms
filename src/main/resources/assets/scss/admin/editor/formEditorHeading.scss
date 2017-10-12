@@ -1,0 +1,25 @@
+.xpFormHeading {
+  display: grid;
+  grid-template-columns: $logo-width auto;
+  grid-template-rows: auto;
+  grid-template-areas: "logo main" "logo main";
+  grid-gap: $default-margin-bottom $default-margin-right;
+  padding: 0 $default-margin-right;
+}
+
+.xpFormHeading .xpFormLogo {
+  grid-area: "logo";
+}
+
+.xpFormHeading .xpFormHeadingMain {
+  grid-area: "main";
+}
+
+.xpFormHeading .xpFormEditorLabel {
+  margin-bottom: 0;
+}
+
+.xpFormHeading .xpFormLogo {
+  width: $logo-width;
+  height: $logo-width;
+}

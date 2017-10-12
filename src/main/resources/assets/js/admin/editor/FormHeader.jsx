@@ -4,7 +4,7 @@ import { assetUrl } from '../util/EnonicHelper';
 
 const FormHeader = () => (
   <div className="xpFormHeading">
-    <img src={assetUrl('img/icons/adminFavicon.png')} className="xpform-logo" alt="" />
+    <img src={assetUrl('img/icons/adminFavicon.png')} className="xpFormLogo" alt="" />
     <div className="xpFormHeadingMain">
       <TextInput
         id="displayName"

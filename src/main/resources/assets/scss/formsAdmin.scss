@@ -1,1 +1,6 @@
-@import './admin/editor/formEditor.scss';
+/*** Common elements ***/
+@import "admin/common/button";
+@import "admin/common/input";
+
+/*** Special cases ***/
+@import 'admin/editor/formEditor.scss';
