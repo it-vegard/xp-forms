@@ -1,21 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import PropTypes from 'prop-types';
-import App from '../../../formbuilder/App';
+import FormsApp from './reducers';
+import XpForm from './form';
 
-function mapStateToProps(state) {
-  return {
-    initialValues: state.form.formeditor.values,
-  };
-}
-
-const FormPreview = props => (
-  <div className="xpFormPreview">
-    <App initialValues={props.initialValues} />
-  </div>
+const store = createStore(
+  FormsApp,
+  compose(applyMiddleware(thunkMiddleware)),
 );
 
-FormPreview.propTypes = {
+const App = props => (
+  <Provider store={store}>
+    <XpForm initialValues={props.initialValues} />
+  </Provider>
+);
+
+App.propTypes = {
   initialValues: PropTypes.shape({
     type: PropTypes.string,
     config: PropTypes.shape({
@@ -34,4 +36,4 @@ FormPreview.propTypes = {
   }),
 };
 
-export default connect(mapStateToProps)(FormPreview);
+export default App;

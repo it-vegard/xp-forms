@@ -7,6 +7,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
+    'xpForms.js': './js/formbuilder/index.jsx',
     './css/bundle.css': './scss/formsAdmin.scss',
   },
   output: {
