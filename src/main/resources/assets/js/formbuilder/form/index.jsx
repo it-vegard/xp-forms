@@ -7,14 +7,19 @@ import TextInput from './fields/TextInput';
 import { submitButton as defaultSubmitButton } from './defaultTexts';
 
 function mapStateToProps(state, ownProps) {
-  const form = state.from ? state.form.xpForm : null;
-  return { form: form || ownProps.initialValues };
+  const xpForm = state.form ? state.form.xpForm : null;
+  const previewForm = state.form && state.form.formeditor ?
+    state.form.formeditor.values :
+    null;
+  return {
+    form: previewForm || xpForm || ownProps.initialValues,
+  };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     initApp: (id) => {
-      if (!ownProps.initialValues) {
+      if (!ownProps.form) {
         dispatch(initForm(id));
       }
     },
@@ -33,13 +38,13 @@ class XpForm extends React.Component {
   }
 
   render() {
-    const { submitButton } = this.props.initialValues;
+    const { submitButton } = this.props.form;
     return (
       <Form
         onSubmit={this.props.handleSubmit(formSubmitHandler)}
       >
         { this.props.form.fields.map(field => (
-          <TextInput key={field.id} id={field.id} label={field.label} />
+          <TextInput key={field.xpInputId || field.id} id={field.id} label={field.label} />
         ))}
         <button type="submit">
           { submitButton || defaultSubmitButton }
@@ -54,19 +59,6 @@ XpForm.propTypes = {
   id: PropTypes.string,
   initApp: PropTypes.func,
   form: PropTypes.shape({
-    id: PropTypes.string,
-    displayName: PropTypes.string,
-    title: PropTypes.string,
-    submitButton: PropTypes.string,
-    successMessage: PropTypes.string,
-    overrideSubmitMethod: PropTypes.string,
-    overrideSubmitUrl: PropTypes.string,
-    fields: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string,
-      id: PropTypes.string,
-    })),
-  }),
-  initialValues: PropTypes.shape({
     id: PropTypes.string,
     displayName: PropTypes.string,
     title: PropTypes.string,

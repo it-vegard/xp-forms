@@ -1,35 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import App from '../../../formbuilder/App';
+import XpForm from '../../../formbuilder/form';
 
 function mapStateToProps(state) {
   return {
-    initialValues: state.form.formeditor.values,
+    form: state.form.formeditor,
   };
 }
 
 const FormPreview = props => (
   <div className="xpFormPreview">
-    <App initialValues={props.initialValues} />
+    <XpForm previewForm={props.form} />
   </div>
 );
 
 FormPreview.propTypes = {
-  initialValues: PropTypes.shape({
-    type: PropTypes.string,
-    config: PropTypes.shape({
-      id: PropTypes.string,
-      displayName: PropTypes.string,
-      title: PropTypes.string,
-      submitButton: PropTypes.string,
-      successMessage: PropTypes.string,
-      overrideSubmitMethod: PropTypes.string,
-      overrideSubmitUrl: PropTypes.string,
-      fields: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
+  form: PropTypes.shape({
+    values: PropTypes.shape({
+      type: PropTypes.string,
+      config: PropTypes.shape({
         id: PropTypes.string,
-      })),
+        displayName: PropTypes.string,
+        title: PropTypes.string,
+        submitButton: PropTypes.string,
+        successMessage: PropTypes.string,
+        overrideSubmitMethod: PropTypes.string,
+        overrideSubmitUrl: PropTypes.string,
+        fields: PropTypes.arrayOf(PropTypes.shape({
+          label: PropTypes.string,
+          id: PropTypes.string,
+        })),
+      }),
     }),
   }),
 };
