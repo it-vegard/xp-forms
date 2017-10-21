@@ -9,6 +9,7 @@ const InputFieldEditor = ({ fields }) => (
       <EditorFieldset
         key={field.id || index}
         legend="New input field"
+        deleteInputHandler={() => fields.remove(index)}
       >
         <TextInput
           id={`${field}.label`}
