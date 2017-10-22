@@ -1,5 +1,10 @@
-$appbar-height: 44px;
-
 /*** Icons ***/
 $logo-width-small: 28px;
 $logo-width-large: 64px;
+
+/*** Colors ***/
+$button-text: #777777;
+
+/*** Sizes ***/
+$minimum-click-size: 44px;
+$appbar-height: $minimum-click-size;

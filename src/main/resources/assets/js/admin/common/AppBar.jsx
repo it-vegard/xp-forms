@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { assetUrl } from '../../util/EnonicHelper';
+import { assetUrl } from '../util/EnonicHelper';
 
 const AppBar = props => (
   <div className="xpAppBar">

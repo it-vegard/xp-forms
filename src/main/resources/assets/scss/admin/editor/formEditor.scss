@@ -1,7 +1,6 @@
 $logo-width: 64px;
 $default-margin-right: 25px;
 $default-margin-bottom: 10px;
-$minimum-click-size: 45px;
 $navigationTabArrowHeight: 21px;
 
 /*** Colors ***/
@@ -21,13 +20,13 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
     min-width: 425px;
     overflow-y: scroll;
     resize: horizontal;
-    height: calc(100vh - 90px - 44px);
+    height: calc(100vh - (3 * #{$minimum-click-size}));
     padding-top: 15px;
-    padding-bottom: 45px;
+    padding-bottom: $minimum-click-size;
   }
 
   .xpFormPreview {
-    height: calc(100vh - 45px - 44px);
+    height: calc(100vh - #{$minimum-click-size} - 44px);
     overflow: hidden;
   }
 
@@ -54,7 +53,7 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   font-size: 14px;
   color: #777777;
   float: left;
-  width: calc(100% - 44px);
+  width: calc(100% - #{$minimum-click-size});
   margin-bottom: 20px;
 }
 
@@ -67,10 +66,10 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   font-size: 22px;
   font-weight: bold;
   text-align: right;
-  width: 44px;
-  height: 44px;
+  width: $minimum-click-size;
+  height: $minimum-click-size;
   padding: 0;
-  margin-top: -22px;
+  margin-top: -($minimum-click-size/2);
   margin-bottom: 11px;
   border: 0;
   background-color: transparent;
