@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
-import { assetUrl } from '../util/EnonicHelper';
 
 let SubmitFormButton = ({ dispatch }) => (
   <button
@@ -22,7 +21,6 @@ SubmitFormButton = connect()(SubmitFormButton);
 
 const FormEditorToolbar = () => (
   <div className="xpFormEditorToolbar">
-    <img src={assetUrl('img/icons/adminFavicon.png')} className="xpFormLogo" alt="" />
     <ul className="xpFormEditorControls">
       <li className="xpFormEditorControls__item">
         <SubmitFormButton />

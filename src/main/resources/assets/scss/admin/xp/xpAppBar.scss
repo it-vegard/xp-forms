@@ -1,0 +1,24 @@
+.xpAppBar {
+  background-color: #333333;
+  color: #fff;
+  height: $appbar-height;
+  padding: 0 10px 0 15px;
+  display: grid;
+  grid-template-columns: $logo-width-small auto;
+  grid-template-rows: auto;
+  grid-template-areas: "logo heading";
+  grid-gap: 10px;
+}
+
+.xpAppBar .xpFormLogo {
+  grid-area: logo;
+  margin: (($appbar-height - $logo-width-small)/2) 0;
+}
+
+.xpAppBarHeading {
+  grid-area: heading;
+  text-transform: uppercase;
+  line-height: $appbar-height;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+}
