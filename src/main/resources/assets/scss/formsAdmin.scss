@@ -1,1 +1,12 @@
-@import './admin/editor/formEditor.scss';
+/*** Common elements ***/
+@import "admin/common/variables";
+@import "admin/common/button";
+@import "admin/common/input";
+@import "admin/common/icons";
+
+/*** XP elements ***/
+@import 'admin/xp/xpAppBar';
+
+/*** Special cases ***/
+@import 'admin/editor/formEditor';
+@import 'admin/preview/formPreview';

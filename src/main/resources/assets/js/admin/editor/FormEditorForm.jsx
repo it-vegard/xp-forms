@@ -13,7 +13,10 @@ const formSubmitHandler = (values, dispatch, props) => {
 };
 
 let FormEditorForm = props => (
-  <Form onSubmit={props.handleSubmit(formSubmitHandler)}>
+  <Form
+    className="xpFormEditorForm"
+    onSubmit={props.handleSubmit(formSubmitHandler)}
+  >
     {props.children}
   </Form>
 );

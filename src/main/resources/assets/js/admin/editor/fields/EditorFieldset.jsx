@@ -8,12 +8,20 @@ const EditorFieldset = props => (
       <span className="drag-handle">:::</span>
       {props.legend}
     </legend>
+    <button
+      className="xpFormEditorDeleteFieldButton"
+      aria-label="Delete input"
+      onClick={props.deleteInputHandler}
+    >
+      &times;
+    </button>
     {props.children}
   </fieldset>
 );
 
 EditorFieldset.propTypes = {
   legend: PropTypes.string.isRequired,
+  deleteInputHandler: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 

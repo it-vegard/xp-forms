@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import AppBar from './xp/AppBar';
 import FormEditorForm from './FormEditorForm';
+import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
+import FormPreview from './preview/FormPreview';
 import { loadForm } from '../actions';
 
 function mapStateToProps(state) {
@@ -37,11 +40,13 @@ class FormEditor extends React.Component {
     }
     return (
       <section id="xpFormsEditor">
+        <AppBar heading="Form Editor" />
+        <FormEditorToolbar />
         <FormEditorForm formId={this.props.formId} initialValues={this.props.form}>
           <FormHeader />
           <FormConfiguration />
-          <button type="submit" className="formButton">Submit</button>
         </FormEditorForm>
+        <FormPreview />
       </section>
     );
   }

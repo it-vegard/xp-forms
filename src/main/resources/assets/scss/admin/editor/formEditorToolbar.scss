@@ -1,0 +1,27 @@
+$default-margin-right: 25px;
+$default-margin-bottom: 10px;
+$button-text: #777777;
+
+/*** Editor toolbar styling ***/
+
+.xpFormEditorToolbar {
+  height: 44px;
+  padding-left: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.xpFormEditorControls__item {
+  display: inline-block;
+  line-height: 44px;
+  padding: 0 14px;
+}
+
+.xpFormEditorControls__button {
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: $button-text;
+  padding: 0;
+  cursor: pointer;
+}
