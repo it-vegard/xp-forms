@@ -2,9 +2,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import FormEditor from './editor';
+// import FormEditor from './editor';
 import FormAdminApp from './reducers';
 import { loadForms } from './actions';
+import FormStudio from './studio';
 
 const store = createStore(
   FormAdminApp,
@@ -24,7 +25,10 @@ class AdminApp extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <FormEditor />
+        <div>
+          <FormStudio />
+          { /* <FormEditor /> */ }
+        </div>
       </Provider>
     );
   }
