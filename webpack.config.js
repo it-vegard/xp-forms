@@ -14,6 +14,7 @@ module.exports = {
     path: path.join(__dirname, 'build/resources/main/assets/'),
     filename: '[name]',
   },
+  devtool: 'source-map',
   resolve: {
     extensions: [
       '.js', '.jsx', '.scss',
@@ -74,12 +75,12 @@ module.exports = {
       cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true,
     }),
-    new UglifyJsPlugin({
+    /* new UglifyJsPlugin({
       compress: {
         warnings: false,
       },
       sourceMap: true,
-      extractComments: true,
-    }),
+      // extractComments: true,
+    }), */
   ],
 };
