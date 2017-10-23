@@ -5,6 +5,7 @@ import { push as navigateTo } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { deleteForm, duplicateForm } from '../actions';
 import { formAdminUrl } from '../util/EnonicHelper';
+import Toolbar from '../common/Toolbar';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -16,67 +17,15 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function clickIfEnterOrSpaceClicked(event, callback) {
-  if (event.key === 'Enter' || event.key === 'Space') {
-    callback();
-  }
-}
-
 const FormEditorToolbar = props => (
-  <div className="xpFormEditorToolbar">
-    <ul className="xpFormEditorControls">
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorSaveButton"
-          className="xpFormEditorControls__button"
-          onClick={props.submitForm}
-          onKeyPress={event => clickIfEnterOrSpaceClicked(event, props.submitForm)}
-        >
-          Submit
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorDeleteButton"
-          className="xpFormEditorControls__button"
-          onClick={props.deleteForm}
-          onKeyPress={event => clickIfEnterOrSpaceClicked(event, props.submitForm)}
-        >
-          Delete...
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorDuplicateButton"
-          className="xpFormEditorControls__button"
-          onClick={props.duplicateForm}
-          onKeyPress={event => clickIfEnterOrSpaceClicked(event, props.duplicateForm)}
-        >
-          Duplicate
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorPreviewButton"
-          className="xpFormEditorControls__button"
-          onClick={props.goToPreview}
-          onKeyPress={event => clickIfEnterOrSpaceClicked(event, props.goToPreview)}
-        >
-          Preview
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorCloseButton"
-          className="xpFormEditorControls__button"
-          onClick={props.closeAndReturnToFormStudio}
-          onKeyPress={event => clickIfEnterOrSpaceClicked(event, props.closeAndReturnToFormStudio)}
-        >
-          Close
-        </button>
-      </li>
-    </ul>
-  </div>
+  <Toolbar buttons={[
+      { text: 'Submit', action: props.submitForm },
+      { text: 'Delete...', action: props.deleteForm },
+      { text: 'Duplicate', action: props.duplicateForm },
+      { text: 'Preview', action: props.goToPreview },
+      { text: 'Close', action: props.closeAndReturnToFormStudio },
+    ]}
+  />
 );
 
 FormEditorToolbar.propTypes = {

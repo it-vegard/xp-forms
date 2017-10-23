@@ -33,14 +33,14 @@ class FormStudio extends React.Component {
       <section id="xpFormStudio">
         <AppBar heading="Form Studio" />
         <Toolbar buttons={[
-          { text: 'New...', action: this.props.createNewForm },
-          { text: 'Edit', action: this.props.editForm },
-          { text: 'Delete...', action: this.props.deleteForm },
-          { text: 'Duplicate', action: this.props.duplicateForm },
-          { text: 'Move', action: this.props.moveForm },
-          { text: 'Sort', action: this.props.sort },
-          { text: 'Preview', action: this.props.goToPreview },
-        ]}
+            { text: 'New...', action: this.props.createNewForm },
+            { text: 'Edit', action: this.props.editForm },
+            { text: 'Delete...', action: this.props.deleteForm },
+            { text: 'Duplicate', action: this.props.duplicateForm },
+            { text: 'Move', action: this.props.moveForm },
+            { text: 'Sort', action: this.props.sort },
+            { text: 'Preview', action: this.props.goToPreview },
+          ]}
         />
         <ScrollableColumn>
           <p>Under construction</p>
