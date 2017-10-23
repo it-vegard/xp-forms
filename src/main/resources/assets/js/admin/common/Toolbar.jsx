@@ -11,8 +11,7 @@ const Toolbar = props => (
             {button.text}
           </button>
         </li>
-      ))
-      }
+      ))}
     </ul>
   </nav>
 );

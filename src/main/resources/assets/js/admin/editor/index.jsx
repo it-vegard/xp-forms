@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import AppBar from '../common/AppBar';
 import FormEditorForm from './FormEditorForm';
 import FormEditorToolbar from './FormEditorToolbar';
@@ -74,4 +75,4 @@ FormEditor.propTypes = {
   onLoad: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormEditor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormEditor));

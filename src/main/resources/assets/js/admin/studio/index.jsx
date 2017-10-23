@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import AppBar from '../common/AppBar';
 import { loadForms } from '../actions';
 import ScrollableColumn from '../common/ScrollableColumn';
@@ -49,4 +50,4 @@ FormStudio.propTypes = {
   onLoad: PropTypes.func,
 };
 
-export default connect(null, mapDispatchToProps)(FormStudio);
+export default withRouter(connect(null, mapDispatchToProps)(FormStudio));
