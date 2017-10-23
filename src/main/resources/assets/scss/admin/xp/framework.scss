@@ -1,0 +1,43 @@
+.xpToolbar {
+  height: $minimum-click-size;
+  padding-left: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.xpToolbar__item {
+  display: inline-block;
+  line-height: $minimum-click-size;
+  padding: 0 14px;
+}
+
+.xpToolbar__button {
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  color: $button-text;
+  padding: 0;
+  cursor: pointer;
+  line-height: $minimum-click-size;
+}
+
+@media screen and (min-width: 768px) {
+
+  .xpScrollableColumn {
+    display: inline-block;
+    float: left;
+    width: 550px;
+    min-width: 425px;
+    overflow-y: scroll;
+    resize: horizontal;
+    height: calc(100vh - (#{$minimum-click-size} * 2));
+    box-sizing: border-box;
+  }
+
+  .xpFlexibleColumn {
+    height: calc(100vh - 45px - 44px);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AppBar from './xp/AppBar';
+import AppBar from '../common/AppBar';
 import FormEditorForm from './FormEditorForm';
 import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
