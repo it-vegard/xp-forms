@@ -24,6 +24,7 @@ const InputFieldEditor = ({ fields }) => (
       </EditorFieldset>
       ))}
     <button
+      type="button"
       className="xpFormAddInputFieldButton"
       onClick={() => fields.push({ xpInputId: fields.length })}
     >Add Input Field

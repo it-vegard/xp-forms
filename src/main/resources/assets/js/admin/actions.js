@@ -74,3 +74,17 @@ export function submitForm(values, id) {
       .then((json) => { dispatch(savedForm(json)); });
   };
 }
+
+export function deleteForm(id) {
+  return {
+    type: 'DELETE_FORM',
+    id,
+  };
+}
+
+export function duplicateForm(id) {
+  return {
+    type: 'DUPLICATE_FORM',
+    id,
+  };
+}
