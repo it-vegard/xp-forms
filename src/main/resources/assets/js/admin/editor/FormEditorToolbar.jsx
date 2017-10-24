@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import { push as navigateTo } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { deleteForm, duplicateForm } from '../actions';
+import { deleteForm, duplicateForm, closeForm } from '../actions';
 import { formAdminUrl } from '../util/EnonicHelper';
 import Toolbar from '../common/Toolbar';
 
@@ -11,7 +11,7 @@ function mapDispatchToProps(dispatch) {
   return {
     submitForm: () => dispatch(submit('formeditor')),
     goToPreview: () => dispatch(navigateTo(formAdminUrl('/editor'))),
-    closeAndReturnToFormStudio: () => dispatch(navigateTo(formAdminUrl('/'))),
+    closeAndReturnToFormStudio: () => dispatch(closeForm()),
     duplicateForm: () => dispatch(duplicateForm('id')),
     deleteForm: () => dispatch(deleteForm('id')),
   };

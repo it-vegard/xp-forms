@@ -14,7 +14,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoad: () => dispatch(loadForms()),
     createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
-    editForm: () => dispatch(navigateTo(formAdminUrl('/editor/id'))),
+    editForm: () => dispatch(navigateTo(formAdminUrl('/editor/92e31d28-7251-44e1-8cda-65b51e6822dd'))),
     deleteForm: () => dispatch(deleteForm('id')),
     duplicateForm: () => dispatch(duplicateForm('id')),
     moveForm: () => 'not yet implemented',

@@ -10,16 +10,7 @@ const NEW_FORM = {
   successMessage: null,
   overrideSubmitUrl: null,
   overrideSubmitMethod: null,
-  fields: [
-    {
-      label: null,
-      id: null,
-    },
-    {
-      label: null,
-      id: null,
-    },
-  ],
+  fields: [],
 };
 
 const DEFAULT_APP_STATE = {
@@ -75,6 +66,14 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
           forms: action.forms,
         },
       };
+    case 'CLOSE_FORM':
+      return {
+        ...state,
+        editor: {
+          isLoading: false,
+          form: null,
+        },
+      };
     default:
       return state;
   }
@@ -82,7 +81,7 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
 
 function formStudioReducer(state = { forms: [] }, action) {
   switch (action.type) {
-    case 'CREATE_NEW':
+    case 'CREATE_FORM':
       return state;
     case 'RECEIVE_FORMS':
       return [
