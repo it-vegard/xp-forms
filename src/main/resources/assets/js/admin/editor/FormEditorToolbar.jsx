@@ -1,56 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
+import { push as navigateTo } from 'react-router-redux';
 import PropTypes from 'prop-types';
+import { deleteForm, duplicateForm, closeForm } from '../actions';
+import { formAdminUrl } from '../util/EnonicHelper';
+import Toolbar from '../common/Toolbar';
 
-let SubmitFormButton = ({ dispatch }) => (
-  <button
-    id="xpFormEditorSaveButton"
-    className="xpFormEditorControls__button"
-    onClick={() => dispatch(submit('formeditor'))}
-  >
-    Save draft
-  </button>
+function mapDispatchToProps(dispatch) {
+  return {
+    submitForm: () => dispatch(submit('formeditor')),
+    goToPreview: () => dispatch(navigateTo(formAdminUrl('/editor'))),
+    closeAndReturnToFormStudio: () => dispatch(closeForm()),
+    duplicateForm: () => dispatch(duplicateForm('id')),
+    deleteForm: () => dispatch(deleteForm('id')),
+  };
+}
+
+const FormEditorToolbar = props => (
+  <Toolbar buttons={[
+      { text: 'Submit', action: props.submitForm },
+      { text: 'Delete...', action: props.deleteForm },
+      { text: 'Duplicate', action: props.duplicateForm },
+      { text: 'Preview', action: props.goToPreview },
+      { text: 'Close', action: props.closeAndReturnToFormStudio },
+    ]}
+  />
 );
 
-SubmitFormButton.propTypes = {
-  dispatch: PropTypes.func,
+FormEditorToolbar.propTypes = {
+  closeAndReturnToFormStudio: PropTypes.func,
+  goToPreview: PropTypes.func,
+  submitForm: PropTypes.func,
+  duplicateForm: PropTypes.func,
+  deleteForm: PropTypes.func,
 };
 
-SubmitFormButton = connect()(SubmitFormButton);
-
-const FormEditorToolbar = () => (
-  <div className="xpFormEditorToolbar">
-    <ul className="xpFormEditorControls">
-      <li className="xpFormEditorControls__item">
-        <SubmitFormButton />
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorDeleteButton"
-          className="xpFormEditorControls__button"
-        >
-          Delete...
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorDuplicateButton"
-          className="xpFormEditorControls__button"
-        >
-          Duplicate
-        </button>
-      </li>
-      <li className="xpFormEditorControls__item">
-        <button
-          id="xpFormEditorPreviewButton"
-          className="xpFormEditorControls__button"
-        >
-          Preview
-        </button>
-      </li>
-    </ul>
-  </div>
-);
-
-export default FormEditorToolbar;
+export default connect(null, mapDispatchToProps)(FormEditorToolbar);

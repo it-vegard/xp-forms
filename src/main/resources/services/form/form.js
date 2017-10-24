@@ -1,57 +1,14 @@
 var nodeLib = require('/lib/xp/node');
 var contextLib = require('/lib/xp/context');
 
-var XP_FORMS_REPO_NAME = "forms-repo";
+var XP_FORMS_REPO_NAME = 'forms-repo';
 
 var formId, newFormDefinition;
-
-exports.get = function(req) {
-  var formRepoConnection = nodeLib.connect({
-    repoId: XP_FORMS_REPO_NAME,
-    branch: 'master'
-  });
-
-  var form = formRepoConnection.get(req.params.id);
-
-  if (form.config) {
-    return {
-      contentType: 'application/json',
-      body: {
-        form: form.config
-      }
-    }
-  } else {
-    return {
-      contentType: 'application/json',
-      body: {
-        form: { isMissing: true }
-      }
-    }
-  }
-};
-
-exports.post = function(req) {
-  formId = req.params.id;
-  newFormDefinition = req.body ? JSON.parse(req.body).values : null;
-
-  if (!newFormDefinition) {
-    resetGlobalFormVariables();
-    return createResponse("Form is missing", 400);
-  } else if (formId) {
-    runAsAdmin(updateForm);
-    resetGlobalFormVariables();
-    return createResponse("Updated form " + formId + ".");
-  } else {
-    var response = runAsAdmin(createForm);
-    resetGlobalFormVariables();
-    return createResponse("Created form " + response._id + ".");
-  }
-};
 
 function createConnectionToRepo(repoName) {
   return nodeLib.connect({
     repoId: repoName,
-    branch: 'master'
+    branch: 'master',
   });
 }
 
@@ -76,9 +33,9 @@ function createResponse(msg, status) {
     contentType: 'application/json',
     status: status || 200,
     body: {
-      message: msg
-    }
-  }
+      message: msg,
+    },
+  };
 }
 
 function runAsAdmin(callback) {
@@ -87,14 +44,14 @@ function runAsAdmin(callback) {
     branch: 'master',
     user: {
       login: 'su',
-      userStore: 'system'
+      userStore: 'system',
     },
     principals: [
-      "role:system.admin"
+      'role:system.admin',
     ],
     attributes: {
-      'ignorePublishTimes': true
-    }
+      ignorePublishTimes: true,
+    },
   }, callback);
 }
 
@@ -102,3 +59,57 @@ function resetGlobalFormVariables() {
   formId = undefined;
   newFormDefinition = undefined;
 }
+
+exports.get = function(req) {
+  var formRepoConnection = nodeLib.connect({
+    repoId: XP_FORMS_REPO_NAME,
+    branch: 'master',
+  });
+
+  var form = formRepoConnection.get(req.params.id);
+
+  if (form.config) {
+    return {
+      contentType: 'application/json',
+      body: {
+        form: form.config,
+      },
+    };
+  } else {
+    return {
+      contentType: 'application/json',
+      body: {
+        form: {
+          isMissing: true,
+        },
+      },
+    };
+  }
+};
+
+exports.post = function(req) {
+  formId = req.params.id;
+  newFormDefinition = req.body ? JSON.parse(req.body).values : null;
+
+  if (!newFormDefinition) {
+    resetGlobalFormVariables();
+    return createResponse('Form is missing', 400);
+  } else if (formId) {
+    runAsAdmin(updateForm);
+    resetGlobalFormVariables();
+    return createResponse('Updated form ' + formId + '.');
+  } else {
+    var response = runAsAdmin(createForm);
+    resetGlobalFormVariables();
+    return createResponse('Created form ' + response._id + '.');
+  }
+};
+
+exports.put = function(req) {
+  formId = req.params.id;
+  newFormDefinition = req.body ? JSON.parse(req.body).values : null;
+
+  var response = runAsAdmin(createForm);
+  resetGlobalFormVariables();
+  return createResponse('Created form ' + response._id + '.');
+};

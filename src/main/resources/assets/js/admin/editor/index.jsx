@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import AppBar from '../common/AppBar';
 import FormEditorForm from './FormEditorForm';
 import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
-import { loadForm } from '../actions';
+import { createNewForm, loadForm } from '../actions';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    formId: state.forms[0] ? state.forms[0].id : null,
+    formId: ownProps.match.params.id ? ownProps.match.params.id : null,
     form: state.app.editor.form,
     isLoading: state.app.editor.isLoading,
   };
@@ -19,16 +20,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoad: (id) => {
-      dispatch(loadForm(id));
-    },
+    onLoad: id => dispatch(loadForm(id)),
+    createNewForm: () => dispatch(createNewForm()),
   };
 }
 
 class FormEditor extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.form && !this.props.formId && nextProps.formId) {
-      this.props.onLoad(nextProps.formId);
+  componentWillMount() {
+    if (this.props.formId) {
+      this.props.onLoad(this.props.formId);
+    } else {
+      this.props.createNewForm();
     }
   }
 
@@ -53,6 +55,7 @@ class FormEditor extends React.Component {
 }
 
 FormEditor.propTypes = {
+  createNewForm: PropTypes.func,
   formId: PropTypes.string,
   form: PropTypes.shape({
     type: PropTypes.string,
@@ -74,4 +77,4 @@ FormEditor.propTypes = {
   onLoad: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormEditor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormEditor));

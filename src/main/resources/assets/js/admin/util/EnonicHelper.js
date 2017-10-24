@@ -5,3 +5,5 @@ const serviceBaseUrl = `_/service/${appName}/`;
 export const assetUrl = assetPath => assetBaseUrl + assetPath;
 
 export const serviceUrl = servicePath => serviceBaseUrl + servicePath;
+
+export const formAdminUrl = subPath => `/admin/tool/${appName}/main${subPath}`;

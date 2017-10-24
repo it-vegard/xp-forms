@@ -9,6 +9,7 @@ const EditorFieldset = props => (
       {props.legend}
     </legend>
     <button
+      type="button"
       className="xpFormEditorDeleteFieldButton"
       aria-label="Delete input"
       onClick={props.deleteInputHandler}

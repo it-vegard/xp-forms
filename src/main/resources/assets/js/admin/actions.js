@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { serviceUrl } from './util/EnonicHelper';
+import { push as navigateTo } from 'react-router-redux';
+import { formAdminUrl, serviceUrl } from './util/EnonicHelper';
 
 export function loadingForms() {
   return {
@@ -33,6 +34,12 @@ export function receiveForm(form) {
   return {
     type: 'RECEIVE_FORM',
     form,
+  };
+}
+
+export function createNewForm() {
+  return {
+    type: 'CREATE_FORM',
   };
 }
 
@@ -72,5 +79,26 @@ export function submitForm(values, id) {
     })
       .then(response => response.json())
       .then((json) => { dispatch(savedForm(json)); });
+  };
+}
+
+export function deleteForm(id) {
+  return {
+    type: 'DELETE_FORM',
+    id,
+  };
+}
+
+export function duplicateForm(id) {
+  return {
+    type: 'DUPLICATE_FORM',
+    id,
+  };
+}
+
+export function closeForm() {
+  return (dispatch) => {
+    dispatch(navigateTo(formAdminUrl('/')));
+    dispatch({ type: 'CLOSE_FORM' });
   };
 }
