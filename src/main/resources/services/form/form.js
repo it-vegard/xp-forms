@@ -5,6 +5,13 @@ var XP_FORMS_REPO_NAME = 'forms-repo';
 
 var formId, newFormDefinition;
 
+function setupFormDefinition(form) {
+  return form ? {
+    type: 'form',
+    config: JSON.parse(form).values,
+  } : null;
+}
+
 function createConnectionToRepo(repoName) {
   return nodeLib.connect({
     repoId: repoName,
@@ -24,7 +31,7 @@ function updateForm() {
     editor: function(node){
       node.config = newFormDefinition;
       return node;
-    }
+    },
   });
 }
 
@@ -39,7 +46,7 @@ function createResponse(msg, status) {
 }
 
 function runAsAdmin(callback) {
-  contextLib.run({
+  return contextLib.run({
     repository: XP_FORMS_REPO_NAME,
     branch: 'master',
     user: {
@@ -89,7 +96,7 @@ exports.get = function(req) {
 
 exports.post = function(req) {
   formId = req.params.id;
-  newFormDefinition = req.body ? JSON.parse(req.body).values : null;
+  newFormDefinition = setupFormDefinition(req.body);
 
   if (!newFormDefinition) {
     resetGlobalFormVariables();
@@ -107,7 +114,7 @@ exports.post = function(req) {
 
 exports.put = function(req) {
   formId = req.params.id;
-  newFormDefinition = req.body ? JSON.parse(req.body).values : null;
+  newFormDefinition = setupFormDefinition(req.body);
 
   var response = runAsAdmin(createForm);
   resetGlobalFormVariables();

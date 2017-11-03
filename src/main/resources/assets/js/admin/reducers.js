@@ -79,7 +79,7 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
   }
 }
 
-function formStudioReducer(state = { forms: [] }, action) {
+function formStudioReducer(state = [], action) {
   switch (action.type) {
     case 'CREATE_FORM':
       return state;
