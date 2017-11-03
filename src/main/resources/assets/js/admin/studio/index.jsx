@@ -9,6 +9,7 @@ import { formAdminUrl } from '../util/EnonicHelper';
 import ScrollableColumn from '../common/ScrollableColumn';
 import FlexibleColumn from '../common/FlexibleColumn';
 import Toolbar from '../common/Toolbar';
+import FormStudioOverview from './overview';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -43,7 +44,7 @@ class FormStudio extends React.Component {
           ]}
         />
         <ScrollableColumn>
-          <p>Under construction</p>
+          <FormStudioOverview />
         </ScrollableColumn>
         <FlexibleColumn>
           <p>TODO</p>
