@@ -68,12 +68,14 @@ class FormsOverviewList extends React.Component {
     const {
       id, label, multiSelectable, list,
     } = this.props;
+    const numberOfSelectedForms =
+      Object.values(this.state.selectedOptions).filter(item => item === true).length;
     return (
       <div>
         <span id={`${id}Label`} className="xpFormsVisuallyHidden">{label}</span>
         <div className={`${id}Toolbar`}>
-          {this.state.selectedOptions.length > 0 ? [
-            <span className={`${id}Toolbar__counter`}>{list.length}</span>,
+          {numberOfSelectedForms > 0 ? [
+            <span className={`${id}Toolbar__counter`}>{numberOfSelectedForms}</span>,
             <span> forms </span>,
             ] : null
           }
