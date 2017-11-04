@@ -35,20 +35,44 @@ class FormStudio extends React.Component {
     this.props.onLoad();
   }
 
+  getToolbarButtons() {
+    const numberOfSelectedForms = this.props.selectedForms.length;
+    const numberOfSelectedFormsParenthesis = numberOfSelectedForms > 1 ? ` (${numberOfSelectedForms})` : '';
+    return [
+      {
+        text: 'New...',
+        action: this.props.createNewForm,
+      },
+      {
+        text: 'Edit',
+        action: this.props.editForm,
+        disabled: (numberOfSelectedForms !== 1),
+      },
+      {
+        text: `Delete${numberOfSelectedFormsParenthesis}`,
+        action: this.props.deleteForm,
+        disabled: (numberOfSelectedForms === 0),
+      },
+      {
+        text: 'Duplicate',
+        action: this.props.duplicateForm,
+        disabled: (numberOfSelectedForms !== 1),
+      },
+      // { text: 'Move', action: this.props.moveForm },
+      // { text: 'Sort', action: this.props.sort },
+      {
+        text: 'Preview',
+        action: this.props.goToPreview,
+        disabled: (numberOfSelectedForms !== 1),
+      },
+    ];
+  }
+
   render() {
     return (
       <section id="xpFormStudio">
         <AppBar heading="Form Studio" />
-        <Toolbar buttons={[
-            { text: 'New...', action: this.props.createNewForm },
-            { text: 'Edit', action: this.props.editForm, disabled: (this.props.selectedForms.length !== 1) },
-            { text: 'Delete...', action: this.props.deleteForm, disabled: (this.props.selectedForms.length === 0) },
-            { text: 'Duplicate', action: this.props.duplicateForm, disabled: (this.props.selectedForms.length !== 1) },
-            // { text: 'Move', action: this.props.moveForm },
-            // { text: 'Sort', action: this.props.sort },
-            { text: 'Preview', action: this.props.goToPreview, disabled: (this.props.selectedForms.length !== 1) },
-          ]}
-        />
+        <Toolbar buttons={this.getToolbarButtons()} />
         <ScrollableColumn>
           <FormStudioOverview />
         </ScrollableColumn>
