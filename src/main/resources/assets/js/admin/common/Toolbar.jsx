@@ -15,6 +15,7 @@ const Toolbar = props => (
         <li key={textToName(button.text)} className="xpToolbar__item">
           <button
             className="xpToolbar__button"
+            disabled={button.disabled}
             onClick={button.action}
             onKeyPress={event => clickIfEnterOrSpaceClicked(event, button.action)}
           >
@@ -30,6 +31,7 @@ Toolbar.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
   }).isRequired).isRequired,
 };
 

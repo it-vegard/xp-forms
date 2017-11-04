@@ -11,6 +11,12 @@ import FlexibleColumn from '../common/FlexibleColumn';
 import Toolbar from '../common/Toolbar';
 import FormStudioOverview from './overview';
 
+function mapStateToProps(state) {
+  return {
+    selectedForms: state.app.formStudio.selectedForms,
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     onLoad: () => dispatch(loadForms()),
@@ -18,8 +24,8 @@ function mapDispatchToProps(dispatch) {
     editForm: () => dispatch(navigateTo(formAdminUrl('/editor/92e31d28-7251-44e1-8cda-65b51e6822dd'))),
     deleteForm: () => dispatch(deleteForm('id')),
     duplicateForm: () => dispatch(duplicateForm('id')),
-    moveForm: () => 'not yet implemented',
-    sort: () => 'not yet implemented',
+    // moveForm: () => 'not yet implemented',
+    // sort: () => 'not yet implemented',
     goToPreview: () => dispatch(navigateTo(formAdminUrl('/preview'))),
   };
 }
@@ -35,12 +41,12 @@ class FormStudio extends React.Component {
         <AppBar heading="Form Studio" />
         <Toolbar buttons={[
             { text: 'New...', action: this.props.createNewForm },
-            { text: 'Edit', action: this.props.editForm },
-            { text: 'Delete...', action: this.props.deleteForm },
-            { text: 'Duplicate', action: this.props.duplicateForm },
-            { text: 'Move', action: this.props.moveForm },
-            { text: 'Sort', action: this.props.sort },
-            { text: 'Preview', action: this.props.goToPreview },
+            { text: 'Edit', action: this.props.editForm, disabled: (this.props.selectedForms.length !== 1) },
+            { text: 'Delete...', action: this.props.deleteForm, disabled: (this.props.selectedForms.length === 0) },
+            { text: 'Duplicate', action: this.props.duplicateForm, disabled: (this.props.selectedForms.length !== 1) },
+            // { text: 'Move', action: this.props.moveForm },
+            // { text: 'Sort', action: this.props.sort },
+            { text: 'Preview', action: this.props.goToPreview, disabled: (this.props.selectedForms.length !== 1) },
           ]}
         />
         <ScrollableColumn>
@@ -60,9 +66,10 @@ FormStudio.propTypes = {
   editForm: PropTypes.func,
   deleteForm: PropTypes.func,
   duplicateForm: PropTypes.func,
-  moveForm: PropTypes.func,
-  sort: PropTypes.func,
+  // moveForm: PropTypes.func,
+  // sort: PropTypes.func,
   goToPreview: PropTypes.func,
+  selectedForms: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(FormStudio));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormStudio));

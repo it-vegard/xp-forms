@@ -18,6 +18,11 @@
   padding: 0;
   cursor: pointer;
   line-height: $minimum-click-size;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 @media screen and (min-width: 768px) {
