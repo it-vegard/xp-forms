@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FormsOverviewList from './FormsOverviewList';
+import { selectForm, unSelectForm } from '../../actions';
 
 function mapStateToProps(state) {
   return {
@@ -11,7 +12,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    selectForm: id => () => dispatch({ type: 'SELECT_FORM', id }),
+    selectForm: id => dispatch(selectForm(id)),
+    unSelectForm: id => dispatch(unSelectForm(id)),
   };
 }
 
@@ -20,13 +22,15 @@ const FormStudioOverview = props => (
     id="xpFormsOverviewListBox"
     label="Forms"
     list={props.forms}
-    clickHandler={props.selectForm}
+    selectHandler={props.selectForm}
+    unSelectHandler={props.unSelectForm}
     multiSelectable
   />
 );
 
 FormStudioOverview.propTypes = {
   selectForm: PropTypes.func,
+  unSelectForm: PropTypes.func,
   forms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     displayName: PropTypes.string,

@@ -37,7 +37,12 @@ class FormsOverviewList extends React.Component {
             [optionId]: !this.state.selectedOptions[optionId],
           },
         });
-        return this.props.clickHandler(optionId);
+        if (!this.state.selectedOptions[optionId]) {
+          this.props.selectHandler(optionId);
+        } else {
+          this.props.unSelectHandler(optionId);
+        }
+        break;
       case 'ArrowDown':
         currentIndex = Math.min(this.state.currentIndex + 1, this.props.list.length - 1);
         this.setState({
@@ -45,7 +50,7 @@ class FormsOverviewList extends React.Component {
           activeDescendant: this.props.list[currentIndex].id,
           currentIndex,
         });
-        return -1;
+        break;
       case 'ArrowUp':
         currentIndex = Math.max(this.state.currentIndex - 1, 0);
         this.setState({
@@ -53,15 +58,15 @@ class FormsOverviewList extends React.Component {
           activeDescendant: this.props.list[currentIndex].id,
           currentIndex,
         });
-        return -1;
+        break;
       default:
-        return -1;
+        break;
     }
   }
 
   render() {
     const {
-      id, label, multiSelectable, list, clickHandler,
+      id, label, multiSelectable, list,
     } = this.props;
     return (
       <div>
@@ -91,8 +96,8 @@ class FormsOverviewList extends React.Component {
               id={getId(id, option.id)}
               key={getId(id, option.id)}
               className={`${id}Option${this.state.selectedOptions[option.id] === true ? ` ${id}Option--checked` : ''}${this.state.activeDescendant === option.id ? ` ${id}Option--focused` : ''}`}
-              onClick={() => clickHandler(option.id)}
-              onKeyUp={() => {}}
+              onClick={() => {}}
+              onKeyUp={() => {}} // hack to remove es-lint error, as key handlers are placed on ul
             >
               <span className={`${id}OptionText`}>{option.displayName}</span>
             </li>
@@ -112,7 +117,8 @@ FormsOverviewList.propTypes = {
     id: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
   }).isRequired).isRequired,
-  clickHandler: PropTypes.func,
+  selectHandler: PropTypes.func,
+  unSelectHandler: PropTypes.func,
 };
 
 export default FormsOverviewList;

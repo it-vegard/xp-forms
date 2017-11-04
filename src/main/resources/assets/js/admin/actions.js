@@ -102,3 +102,17 @@ export function closeForm() {
     dispatch({ type: 'CLOSE_FORM' });
   };
 }
+
+export function selectForm(id) {
+  return {
+    type: 'SELECT_FORM',
+    id,
+  };
+}
+
+export function unSelectForm(id) {
+  return {
+    type: 'UNSELECT_FORM',
+    id,
+  };
+}

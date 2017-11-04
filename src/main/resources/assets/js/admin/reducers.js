@@ -21,6 +21,7 @@ const DEFAULT_APP_STATE = {
   formStudio: {
     isLoading: false,
     forms: [],
+    selectedForms: [],
   },
 };
 
@@ -54,6 +55,7 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
       return {
         ...state,
         formStudio: {
+          ...state.formStudio,
           isLoading: true,
           forms: [],
         },
@@ -62,6 +64,7 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
       return {
         ...state,
         formStudio: {
+          ...state.formStudio,
           isLoading: false,
           forms: action.forms,
         },
@@ -72,6 +75,25 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
         editor: {
           isLoading: false,
           form: null,
+        },
+      };
+    case 'SELECT_FORM':
+      return {
+        ...state,
+        formStudio: {
+          ...state.formStudio,
+          selectedForms: [
+            ...state.formStudio.selectedForms,
+            action.id,
+          ],
+        },
+      };
+    case 'UNSELECT_FORM':
+      return {
+        ...state,
+        formStudio: {
+          ...state.formStudio,
+          selectedForms: state.formStudio.selectedForms.filter(item => action.id !== item),
         },
       };
     default:
