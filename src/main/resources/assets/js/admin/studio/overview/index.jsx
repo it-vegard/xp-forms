@@ -6,7 +6,7 @@ import { selectForm, unSelectForm } from '../../actions';
 
 function mapStateToProps(state) {
   return {
-    forms: state.forms || [],
+    forms: state.forms,
   };
 }
 
