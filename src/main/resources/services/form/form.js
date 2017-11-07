@@ -35,6 +35,11 @@ function updateForm() {
   });
 }
 
+function deleteForm() {
+  var formRepoConnection = createConnectionToRepo(XP_FORMS_REPO_NAME);
+  return formRepoConnection.delete(formId);
+}
+
 function createResponse(msg, status) {
   return {
     contentType: 'application/json',
@@ -120,3 +125,10 @@ exports.put = function(req) {
   resetGlobalFormVariables();
   return createResponse('Created form ' + response._id + '.');
 };
+
+exports.delete = function(req) {
+  formId = req.params.id;
+  runAsAdmin(deleteForm);
+  resetGlobalFormVariables();
+  return createResponse('Deleted form ' + formId + '.');
+}

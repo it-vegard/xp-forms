@@ -22,7 +22,8 @@ function mapDispatchToProps(dispatch) {
     onLoad: () => dispatch(loadForms()),
     createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
     editForm: () => dispatch(navigateTo(formAdminUrl('/editor/92e31d28-7251-44e1-8cda-65b51e6822dd'))),
-    deleteForm: () => dispatch(deleteForm('id')),
+    deleteForm: selectedForms => () => selectedForms.forEach(formToDelete =>
+      dispatch(deleteForm(formToDelete))),
     duplicateForm: selectedForms => () => selectedForms.forEach(formToDuplicate =>
       dispatch(duplicateForm(formToDuplicate))),
     // moveForm: () => 'not yet implemented',
@@ -51,7 +52,7 @@ class FormStudio extends React.Component {
       },
       {
         text: `Delete${numberOfSelectedFormsParenthesis}`,
-        action: this.props.deleteForm,
+        action: this.props.deleteForm(this.props.selectedForms),
         disabled: (numberOfSelectedForms === 0),
       },
       {

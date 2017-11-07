@@ -96,6 +96,15 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
           selectedForms: state.formStudio.selectedForms.filter(item => action.id !== item),
         },
       };
+    case 'DELETED_FORM':
+      return {
+        ...state,
+        formStudio: {
+          ...state.formStudio,
+          forms: state.formStudio.forms.filter(item => action.id !== item),
+          selectedForms: state.formStudio.selectedForms.filter(item => action.id !== item),
+        },
+      };
     default:
       return state;
   }
@@ -110,6 +119,8 @@ function formStudioReducer(state = [], action) {
         ...state,
         ...action.forms,
       ];
+    case 'DELETED_FORM':
+      return state.filter(item => action.id !== item.id);
     default:
       return state;
   }

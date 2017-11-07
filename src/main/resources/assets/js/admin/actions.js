@@ -86,11 +86,17 @@ export function submitForm(values, id) {
   };
 }
 
-export function deleteForm(id) {
+function deletedForm(id) {
   return {
-    type: 'DELETE_FORM',
+    type: 'DELETED_FORM',
     id,
   };
+}
+
+export function deleteForm(id) {
+  return dispatch => fetch(serviceUrl(`form?id=${id}`), createRequest('DELETE'))
+    .then(response => response.json())
+    .then(() => dispatch(deletedForm(id)));
 }
 
 export function duplicatedForm(id) {
