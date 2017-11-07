@@ -21,7 +21,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoad: () => dispatch(loadForms()),
     createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
-    editForm: () => dispatch(navigateTo(formAdminUrl('/editor/92e31d28-7251-44e1-8cda-65b51e6822dd'))),
+    editForm: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/editor/${selectedForms[0]}/`))),
     deleteForm: selectedForms => () => selectedForms.forEach(formToDelete =>
       dispatch(deleteForm(formToDelete))),
     duplicateForm: selectedForms => () => selectedForms.forEach(formToDuplicate =>
@@ -47,7 +47,7 @@ class FormStudio extends React.Component {
       },
       {
         text: 'Edit',
-        action: this.props.editForm,
+        action: this.props.editForm(this.props.selectedForms),
         disabled: (numberOfSelectedForms !== 1),
       },
       {
