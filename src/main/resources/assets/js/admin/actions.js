@@ -2,6 +2,16 @@ import fetch from 'isomorphic-fetch';
 import { push as navigateTo } from 'react-router-redux';
 import { formAdminUrl, serviceUrl } from './util/EnonicHelper';
 
+function createRequest(method, values) {
+  return {
+    method,
+    headers: values ? {
+      'Content-Type': 'application/json',
+    } : undefined,
+    body: values ? JSON.stringify({ values }) : undefined,
+  };
+}
+
 export function loadingForms() {
   return {
     type: 'LOADING_FORMS',
@@ -70,15 +80,9 @@ export function submitForm(values, id) {
   return (dispatch) => {
     dispatch(submittingForm(values));
     const path = id ? `form?id=${id}` : 'form';
-    return fetch(serviceUrl(path), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ values }),
-    })
+    return fetch(serviceUrl(path), createRequest('POST', values))
       .then(response => response.json())
-      .then((json) => { dispatch(savedForm(json)); });
+      .then(json => dispatch(savedForm(json)));
   };
 }
 
