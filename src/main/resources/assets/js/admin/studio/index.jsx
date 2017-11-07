@@ -23,7 +23,8 @@ function mapDispatchToProps(dispatch) {
     createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
     editForm: () => dispatch(navigateTo(formAdminUrl('/editor/92e31d28-7251-44e1-8cda-65b51e6822dd'))),
     deleteForm: () => dispatch(deleteForm('id')),
-    duplicateForm: () => dispatch(duplicateForm('id')),
+    duplicateForm: selectedForms => () => selectedForms.forEach(formToDuplicate =>
+      dispatch(duplicateForm(formToDuplicate))),
     // moveForm: () => 'not yet implemented',
     // sort: () => 'not yet implemented',
     goToPreview: () => dispatch(navigateTo(formAdminUrl('/preview'))),
@@ -55,7 +56,7 @@ class FormStudio extends React.Component {
       },
       {
         text: 'Duplicate',
-        action: this.props.duplicateForm,
+        action: this.props.duplicateForm(this.props.selectedForms),
         disabled: (numberOfSelectedForms !== 1),
       },
       // { text: 'Move', action: this.props.moveForm },

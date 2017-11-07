@@ -93,11 +93,21 @@ export function deleteForm(id) {
   };
 }
 
-export function duplicateForm(id) {
+export function duplicatedForm(id) {
   return {
-    type: 'DUPLICATE_FORM',
+    type: 'DUPLICATED_FORM',
     id,
   };
+}
+
+export function duplicateForm(id) {
+  return dispatch => fetch(serviceUrl(`form?id=${id}`))
+    .then(response => response.json())
+    .then(formToDuplicate =>
+      fetch(serviceUrl('form'), createRequest('POST', formToDuplicate.form))
+        .then(response => response.json())
+        .then(json => dispatch(savedForm(json.config)))
+        .then(() => dispatch(duplicatedForm(id))));
 }
 
 export function closeForm() {
