@@ -1,64 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Form } from 'redux-form';
 import PropTypes from 'prop-types';
 import { initForm, submitForm } from '../actions';
-import TextInput from './fields/TextInput';
-import { submitButton as defaultSubmitButton } from './defaultTexts';
+import XpForm from './XpForm';
 
 function mapStateToProps(state, ownProps) {
-  const xpForm = state.form ? state.form.xpForm : null;
-  const previewForm = state.form && state.form.formeditor ?
-    state.form.formeditor.values :
-    null;
+  const formResult = state.forms.find(form => form.id === ownProps.formId);
   return {
-    form: previewForm || xpForm || ownProps.initialValues,
+    initialValues: formResult ? formResult.config : undefined,
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    initApp: (id) => {
-      if (!ownProps.form) {
-        dispatch(initForm(id));
-      }
-    },
+    initApp: id => dispatch(initForm(id)),
+    submitHandler: values => dispatch(submitForm(values, ownProps.formId)),
   };
 }
 
-function formSubmitHandler(values, dispatch, props) {
-  dispatch(submitForm(values, props.formId));
-}
-
-class XpForm extends React.Component {
+class FormWrapper extends React.Component {
   componentWillMount() {
-    if (this.props.id) {
-      this.props.initApp(this.props.id);
+    if (!this.props.initialValues && this.props.formId) {
+      this.props.initApp(this.props.formId);
     }
   }
 
   render() {
-    const { submitButton } = this.props.form;
+    if (!this.props.initialValues) {
+      return (
+        <p>Loading...</p>
+      );
+    }
     return (
-      <Form
-        onSubmit={this.props.handleSubmit(formSubmitHandler)}
-      >
-        { this.props.form.fields.map(field => (
-          <TextInput key={field.xpInputId || field.id} id={field.id} label={field.label} />
-        ))}
-        <button type="submit">
-          { submitButton || defaultSubmitButton }
-        </button>
-      </Form>
+      <XpForm
+        form={this.props.formId}
+        initialValues={this.props.initialValues}
+        handleSubmit={this.props.submitHandler}
+      />
     );
   }
 }
 
-XpForm.propTypes = {
-  handleSubmit: PropTypes.func,
-  id: PropTypes.string,
+FormWrapper.propTypes = {
+  formId: PropTypes.string,
   initApp: PropTypes.func,
-  form: PropTypes.shape({
+  initialValues: PropTypes.shape({
     id: PropTypes.string,
     displayName: PropTypes.string,
     title: PropTypes.string,
@@ -71,8 +57,7 @@ XpForm.propTypes = {
       id: PropTypes.string,
     })),
   }),
+  submitHandler: PropTypes.func,
 };
 
-export default reduxForm({
-  form: 'xpForm',
-}, mapStateToProps, mapDispatchToProps)(connect(mapStateToProps)(XpForm));
+export default connect(mapStateToProps, mapDispatchToProps)(FormWrapper);

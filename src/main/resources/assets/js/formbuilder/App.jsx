@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import PropTypes from 'prop-types';
 import FormsApp from './reducers';
-import XpForm from './form';
+import FormWrapper from './form';
 
 const store = createStore(
   FormsApp,
@@ -13,27 +13,12 @@ const store = createStore(
 
 const App = props => (
   <Provider store={store}>
-    <XpForm initialValues={props.initialValues} />
+    <FormWrapper formId={props.formId} />
   </Provider>
 );
 
 App.propTypes = {
-  initialValues: PropTypes.shape({
-    type: PropTypes.string,
-    config: PropTypes.shape({
-      id: PropTypes.string,
-      displayName: PropTypes.string,
-      title: PropTypes.string,
-      submitButton: PropTypes.string,
-      successMessage: PropTypes.string,
-      overrideSubmitMethod: PropTypes.string,
-      overrideSubmitUrl: PropTypes.string,
-      fields: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        id: PropTypes.string,
-      })),
-    }),
-  }),
+  formId: PropTypes.string,
 };
 
 export default App;

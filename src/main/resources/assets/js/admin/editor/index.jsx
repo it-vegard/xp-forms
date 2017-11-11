@@ -48,7 +48,7 @@ class FormEditor extends React.Component {
           <FormHeader />
           <FormConfiguration />
         </FormEditorForm>
-        <FormPreview />
+        <FormPreview formId={this.props.formId} />
       </section>
     );
   }

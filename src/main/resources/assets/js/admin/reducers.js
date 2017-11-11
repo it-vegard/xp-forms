@@ -23,6 +23,10 @@ const DEFAULT_APP_STATE = {
     forms: [],
     selectedForms: [],
   },
+  preview: {
+    isLoading: false,
+    form: null,
+  },
 };
 
 function appReducer(state = DEFAULT_APP_STATE, action) {
@@ -38,6 +42,10 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
     case 'LOADING_FORM':
       return {
         ...state,
+        preview: {
+          isLoading: true,
+          form: null,
+        },
         editor: {
           isLoading: true,
           form: null,
@@ -46,6 +54,10 @@ function appReducer(state = DEFAULT_APP_STATE, action) {
     case 'RECEIVE_FORM':
       return {
         ...state,
+        preview: {
+          isLoading: false,
+          form: action.form,
+        },
         editor: {
           isLoading: false,
           form: action.form,
@@ -121,6 +133,26 @@ function formStudioReducer(state = [], action) {
       ];
     case 'DELETED_FORM':
       return state.filter(item => action.id !== item.id);
+    case 'RECEIVE_FORM':
+      if (state.findIndex(form => form.id === action.id) !== -1) {
+        return state.map((form) => {
+          if (form.id !== action.id) {
+            return form;
+          }
+          return {
+            ...form,
+            config: action.form,
+          };
+        });
+      }
+      return [
+        ...state,
+        {
+          id: action.id,
+          displayName: action.form.displayName,
+          config: action.form,
+        },
+      ];
     default:
       return state;
   }

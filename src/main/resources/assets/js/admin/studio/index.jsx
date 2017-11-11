@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(duplicateForm(formToDuplicate))),
     // moveForm: () => 'not yet implemented',
     // sort: () => 'not yet implemented',
-    goToPreview: () => dispatch(navigateTo(formAdminUrl('/preview'))),
+    goToPreview: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/preview/${selectedForms[0]}/`))),
   };
 }
 
@@ -64,7 +64,7 @@ class FormStudio extends React.Component {
       // { text: 'Sort', action: this.props.sort },
       {
         text: 'Preview',
-        action: this.props.goToPreview,
+        action: this.props.goToPreview(this.props.selectedForms),
         disabled: (numberOfSelectedForms !== 1),
       },
     ];

@@ -40,9 +40,10 @@ export function loadingForm() {
   };
 }
 
-export function receiveForm(form) {
+export function receiveForm(formId, form) {
   return {
     type: 'RECEIVE_FORM',
+    id: formId,
     form,
   };
 }
@@ -58,7 +59,7 @@ export function loadForm(formId) {
     dispatch(loadingForm());
     return fetch(serviceUrl(`form?id=${formId}`))
       .then(response => response.json())
-      .then((json) => { dispatch(receiveForm(json.form)); });
+      .then((json) => { dispatch(receiveForm(formId, json.form)); });
   };
 }
 
