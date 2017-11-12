@@ -1,21 +1,26 @@
 var portal = require('/lib/xp/portal');
 var nodeLib = require('/lib/xp/node');
 
-exports.get = function(request) {
-
+function getHandler(request) {
   var component = portal.getComponent();
 
   var formRepo = nodeLib.connect({
     repoId: 'forms-repo',
-    branch: 'master'
+    branch: 'master',
   });
 
-  var formContent = formRepo.get(component.config['form-selector']).config;
+  var formContent = formRepo.get(component.config['form-selector']);
+
+  var pageContributionsScripts = request.pageContributions.bodyEnd || [];
+  pageContributionsScripts.push('<script type="text/javascript" src="' + portal.assetUrl({ path: 'xpForms.js' }) + '"></script>');
 
   return {
-    body: '<h1>Hello World</h1>' +
-          '<pre>' + JSON.stringify(formContent, null, 2) + '</pre>',
-    contentType: 'text/html'
-  }
+    body: '<div id="xpFormRoot" data-th-id="' + formContent.id + '"/>',
+    contentType: 'text/html',
+    pageContributions: {
+      bodyEnd: pageContributionsScripts,
+    },
+  };
+}
 
-};
+exports.get = getHandler;

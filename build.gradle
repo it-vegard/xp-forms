@@ -90,18 +90,18 @@ task svg2png(type: org.gradle.api.tasks.JavaExec) {
     args "-scriptSecurityOff", "-d", "build/resources/main/assets/img/icons/adminFavicon.png", "-m", "image/png", "src/main/resources/application.svg", "-bg", "0.0.0.255"
 }
 
-// processes your package.json before running webpack
-webpack.dependsOn 'npmInstall'
-
 // copies application logo into the form admin tool folder
-copyTask.dependsOn webpack
-copyTask.mustRunAfter webpack
+copyTask.dependsOn npmInstall
+copyTask.mustRunAfter npmInstall
 
 // converts svg logo and copies it into the image assets folder
 svg2png.dependsOn copyTask
 svg2png.mustRunAfter copyTask
 
+// processes your package.json before running webpack
+webpack.dependsOn 'svg2png'
+
 // bundles app
-build.dependsOn svg2png
-build.mustRunAfter svg2png
+build.dependsOn webpack
+build.mustRunAfter webpack
 

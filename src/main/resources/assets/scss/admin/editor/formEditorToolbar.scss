@@ -6,14 +6,13 @@ $button-text: #777777;
 
 .xpFormEditorToolbar {
   height: 44px;
-  padding-left: 15px;
   border-bottom: 1px solid #ccc;
 }
 
 .xpFormEditorControls__item {
   display: inline-block;
   line-height: 44px;
-  padding: 0 14px;
+  padding: 0 $default-padding-horizontal;
 }
 
 .xpFormEditorControls__button {

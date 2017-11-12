@@ -1,13 +1,12 @@
 .xpToolbar {
   height: $minimum-click-size;
-  padding-left: 15px;
   border-bottom: 1px solid #ccc;
 }
 
 .xpToolbar__item {
   display: inline-block;
   line-height: $minimum-click-size;
-  padding: 0 14px;
+  padding: 0 $default-padding-horizontal;
 }
 
 .xpToolbar__button {
@@ -19,6 +18,11 @@
   padding: 0;
   cursor: pointer;
   line-height: $minimum-click-size;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 @media screen and (min-width: 768px) {

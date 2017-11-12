@@ -7,8 +7,8 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import FormEditor from './editor';
 import FormAdminApp from './reducers';
-import { loadForms } from './actions';
 import FormStudio from './studio';
+import FormPreview from './preview';
 
 const history = createHistory();
 
@@ -23,33 +23,29 @@ const store = createStore(
   ),
 );
 
-class AdminApp extends React.Component {
-  componentWillMount() {
-    store.dispatch(loadForms());
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        <ConnectedRouter
-          history={history}
-          basename="/admin/tool/no.vegard.enonic.xp.forms/main"
-        >
-          <Switch>
-            <Route
-              exact
-              path="/admin/tool/no.vegard.enonic.xp.forms/main/"
-              component={FormStudio}
-            />
-            <Route
-              path="/admin/tool/no.vegard.enonic.xp.forms/main/editor/:id?"
-              component={FormEditor}
-            />
-          </Switch>
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
-}
+const AdminApp = () => (
+  <Provider store={store}>
+    <ConnectedRouter
+      history={history}
+      basename="/admin/tool/no.vegard.enonic.xp.forms/main"
+    >
+      <Switch>
+        <Route
+          exact
+          path="/admin/tool/no.vegard.enonic.xp.forms/main/"
+          component={FormStudio}
+        />
+        <Route
+          path="/admin/tool/no.vegard.enonic.xp.forms/main/editor/:id?"
+          component={FormEditor}
+        />
+        <Route
+          path="/admin/tool/no.vegard.enonic.xp.forms/main/preview/:id"
+          component={FormPreview}
+        />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>
+);
 
 export default AdminApp;

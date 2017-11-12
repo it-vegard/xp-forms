@@ -1,0 +1,83 @@
+.xpFormsOverviewListBoxToolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fafafa;
+  border-bottom: 1px solid #eeeeee;
+  height: $minimum-click-size;
+  padding: 0 $default-padding-horizontal;
+  font-size: $font-size-medium;
+
+  &:before {
+    content: ' ';
+    display: inline-block;
+    background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-checked.gif');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: $checkbox-size $checkbox-size;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin-top: (($minimum-click-size - $checkbox-size)/2);
+    margin-right: 35px;
+    margin-bottom: (($minimum-click-size - $checkbox-size)/2);
+  }
+}
+
+.xpFormsOverviewListBoxToolbar__counter {
+  display: inline-block;
+  border: 0;
+  border-radius: (($minimum-click-size * 0.6)/2);
+  background-color: #a1a1a1;
+  margin-right: ($default-padding-horizontal/2);
+  width: ($minimum-click-size * 0.6);
+  height: ($minimum-click-size * 0.6);
+  line-height: ($minimum-click-size * 0.6);
+  text-align: center;
+  color: #ffffff;
+}
+
+.xpFormsOverviewListBoxOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: $minimum-click-size;
+  line-height: $minimum-click-size;
+  padding: 0 $default-padding-horizontal;
+  background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/adminFavicon.png');
+  background-repeat: no-repeat;
+  background-position: 64px;
+  background-size: 25px;
+  font-size: $font-size-medium;
+
+  &:focus {
+    background-color: #4294de;
+  }
+
+  &:hover {
+    background-color: #eeeeee;
+  }
+
+  &:before {
+    content: ' ';
+    display: inline-block;
+    background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-unchecked.gif');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: $checkbox-size $checkbox-size;
+    width: $checkbox-size;
+    height: $minimum-click-size;
+    margin-right: 74px;
+  }
+
+  &.xpFormsOverviewListBoxOption--checked:before {
+    background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-checked.gif');
+  }
+
+  &.xpFormsOverviewListBoxOption--focused {
+    background-color: #4294de;
+  }
+}
+
+.xpFormsOverviewListBoxOptionText {
+  line-height: 44px;
+}

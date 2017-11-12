@@ -2,6 +2,16 @@ import fetch from 'isomorphic-fetch';
 import { push as navigateTo } from 'react-router-redux';
 import { formAdminUrl, serviceUrl } from './util/EnonicHelper';
 
+function createRequest(method, values) {
+  return {
+    method,
+    headers: values ? {
+      'Content-Type': 'application/json',
+    } : undefined,
+    body: values ? JSON.stringify({ values }) : undefined,
+  };
+}
+
 export function loadingForms() {
   return {
     type: 'LOADING_FORMS',
@@ -30,9 +40,10 @@ export function loadingForm() {
   };
 }
 
-export function receiveForm(form) {
+export function receiveForm(formId, form) {
   return {
     type: 'RECEIVE_FORM',
+    id: formId,
     form,
   };
 }
@@ -48,7 +59,7 @@ export function loadForm(formId) {
     dispatch(loadingForm());
     return fetch(serviceUrl(`form?id=${formId}`))
       .then(response => response.json())
-      .then((json) => { dispatch(receiveForm(json.form)); });
+      .then((json) => { dispatch(receiveForm(formId, json.form)); });
   };
 }
 
@@ -70,35 +81,65 @@ export function submitForm(values, id) {
   return (dispatch) => {
     dispatch(submittingForm(values));
     const path = id ? `form?id=${id}` : 'form';
-    return fetch(serviceUrl(path), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ values }),
-    })
+    return fetch(serviceUrl(path), createRequest('POST', values))
       .then(response => response.json())
-      .then((json) => { dispatch(savedForm(json)); });
+      .then(json => dispatch(savedForm(json)));
+  };
+}
+
+function deletedForm(id) {
+  return {
+    type: 'DELETED_FORM',
+    id,
   };
 }
 
 export function deleteForm(id) {
+  return dispatch => fetch(serviceUrl(`form?id=${id}`), createRequest('DELETE'))
+    .then(response => response.json())
+    .then(() => dispatch(deletedForm(id)));
+}
+
+export function duplicatedForm(id) {
   return {
-    type: 'DELETE_FORM',
+    type: 'DUPLICATED_FORM',
     id,
   };
 }
 
 export function duplicateForm(id) {
-  return {
-    type: 'DUPLICATE_FORM',
-    id,
-  };
+  return dispatch => fetch(serviceUrl(`form?id=${id}`))
+    .then(response => response.json())
+    .then(formToDuplicate =>
+      fetch(serviceUrl('form'), createRequest('POST', formToDuplicate.form))
+        .then(response => response.json())
+        .then(json => dispatch(savedForm(json.config)))
+        .then(() => dispatch(duplicatedForm(id))));
 }
 
 export function closeForm() {
   return (dispatch) => {
     dispatch(navigateTo(formAdminUrl('/')));
     dispatch({ type: 'CLOSE_FORM' });
+  };
+}
+
+export function selectForm(id) {
+  return {
+    type: 'SELECT_FORM',
+    id,
+  };
+}
+
+export function unSelectForm(id) {
+  return {
+    type: 'UNSELECT_FORM',
+    id,
+  };
+}
+
+export function resetFormStudio() {
+  return {
+    type: 'RESET_FORM_STUDIO',
   };
 }
