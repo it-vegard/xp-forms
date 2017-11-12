@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { push as navigateTo } from 'react-router-redux';
 import AppBar from '../common/AppBar';
-import { loadForms, duplicateForm, deleteForm } from '../actions';
+import { loadForms, duplicateForm, deleteForm, resetFormStudio } from '../actions';
 import { formAdminUrl } from '../util/EnonicHelper';
 import ScrollableColumn from '../common/ScrollableColumn';
 import FlexibleColumn from '../common/FlexibleColumn';
@@ -20,6 +20,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onLoad: () => dispatch(loadForms()),
+    onUnmount: () => dispatch(resetFormStudio()),
     createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
     editForm: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/editor/${selectedForms[0]}/`))),
     deleteForm: selectedForms => () => selectedForms.forEach(formToDelete =>
@@ -35,6 +36,10 @@ function mapDispatchToProps(dispatch) {
 class FormStudio extends React.Component {
   componentWillMount() {
     this.props.onLoad();
+  }
+
+  componentWillUnmount() {
+    this.props.onUnmount();
   }
 
   getToolbarButtons() {
@@ -88,6 +93,7 @@ class FormStudio extends React.Component {
 
 FormStudio.propTypes = {
   onLoad: PropTypes.func,
+  onUnmount: PropTypes.func,
   createNewForm: PropTypes.func,
   editForm: PropTypes.func,
   deleteForm: PropTypes.func,

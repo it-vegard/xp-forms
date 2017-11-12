@@ -1,7 +1,9 @@
-const formStudioReducer = (state = {
+const DEFAULT_STATE = {
   isLoading: false,
   selectedForms: [],
-}, action) => {
+};
+
+const formStudioReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case 'LOADING_FORMS':
       return {
@@ -31,6 +33,8 @@ const formStudioReducer = (state = {
         ...state,
         selectedForms: state.selectedForms.filter(item => action.id !== item),
       };
+    case 'RESET_FORM_STUDIO':
+      return DEFAULT_STATE;
     default:
       return state;
   }

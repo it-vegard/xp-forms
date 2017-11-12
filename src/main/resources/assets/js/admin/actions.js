@@ -137,3 +137,9 @@ export function unSelectForm(id) {
     id,
   };
 }
+
+export function resetFormStudio() {
+  return {
+    type: 'RESET_FORM_STUDIO',
+  };
+}

@@ -4,8 +4,8 @@ const formsReducer = (state = [], action) => {
       return state;
     case 'RECEIVE_FORMS':
       return [
-        ...state,
-        ...action.forms,
+        ...state.concat(action.forms.filter(newForm =>
+          state.findIndex(form => form.id === newForm.id) === -1)),
       ];
     case 'DELETED_FORM':
       return state.filter(item => action.id !== item.id);
