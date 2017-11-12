@@ -80,22 +80,30 @@ class FormsOverviewList extends React.Component {
     }
   }
 
+  toolbar(id) {
+    const numberOfSelectedForms =
+      Object.values(this.state.selectedOptions).filter(item => item === true).length;
+    if (numberOfSelectedForms > 0) {
+      return (
+        <div className={`${id}Toolbar`}>
+          <span className={`${id}Toolbar__counter`}>{numberOfSelectedForms}</span>
+          <span> forms</span>
+        </div>
+      );
+    }
+    return (
+      <div className={`${id}Toolbar`} />
+    );
+  }
+
   render() {
     const {
       id, label, multiSelectable, list,
     } = this.props;
-    const numberOfSelectedForms =
-      Object.values(this.state.selectedOptions).filter(item => item === true).length;
     return (
       <div>
         <span id={`${id}Label`} className="xpFormsVisuallyHidden">{label}</span>
-        <div className={`${id}Toolbar`}>
-          {numberOfSelectedForms > 0 ? [
-            <span className={`${id}Toolbar__counter`}>{numberOfSelectedForms}</span>,
-            <span> forms </span>,
-            ] : null
-          }
-        </div>
+        { this.toolbar(id) }
         <ul
           role="listbox"
           tabIndex="0"
