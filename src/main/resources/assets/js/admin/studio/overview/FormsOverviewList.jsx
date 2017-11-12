@@ -25,6 +25,22 @@ class FormsOverviewList extends React.Component {
     }
   }
 
+  selectToggle(optionId) {
+    this.setState({
+      ...this.state,
+      activeDescendant: optionId,
+      selectedOptions: {
+        ...this.state.selectedOptions,
+        [optionId]: !this.state.selectedOptions[optionId],
+      },
+    });
+    if (!this.state.selectedOptions[optionId]) {
+      this.props.selectHandler(optionId);
+    } else {
+      this.props.unSelectHandler(optionId);
+    }
+  }
+
   optionKeyHandler(event, optionId) {
     let { currentIndex } = this.state;
     switch (event.key) {
@@ -98,10 +114,15 @@ class FormsOverviewList extends React.Component {
               id={getId(id, option.id)}
               key={getId(id, option.id)}
               className={`${id}Option${this.state.selectedOptions[option.id] === true ? ` ${id}Option--checked` : ''}${this.state.activeDescendant === option.id ? ` ${id}Option--focused` : ''}`}
-              onClick={() => {}}
+              onClick={() => this.selectToggle(option.id)}
               onKeyUp={() => {}} // hack to remove es-lint error, as key handlers are placed on ul
             >
-              <span className={`${id}OptionText`}>{option.displayName}</span>
+              <span
+                key={`${getId(id, option.id)}span`}
+                className={`${id}OptionText`}
+              >
+                {option.displayName}
+              </span>
             </li>
           ))}
         </ul>
