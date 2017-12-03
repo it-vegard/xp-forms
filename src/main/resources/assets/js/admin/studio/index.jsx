@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { push as navigateTo } from 'react-router-redux';
 import AppBar from '../common/AppBar';
-import { loadForms, duplicateForm, deleteForm, resetFormStudio } from '../actions';
+import { loadForms, duplicateForm, deleteForm, resetFormStudio, createNewForm } from '../actions';
 import { formAdminUrl } from '../util/EnonicHelper';
 import ScrollableColumn from '../common/ScrollableColumn';
 import FlexibleColumn from '../common/FlexibleColumn';
@@ -21,8 +21,8 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoad: () => dispatch(loadForms()),
     onUnmount: () => dispatch(resetFormStudio()),
-    createNewForm: () => dispatch(navigateTo(formAdminUrl('/editor'))),
-    editForm: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/editor/${selectedForms[0]}/`))),
+    createNewForm: () => dispatch(createNewForm()),
+    editForm: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/edit/${selectedForms[0]}/`))),
     deleteForm: selectedForms => () => selectedForms.forEach(formToDelete =>
       dispatch(deleteForm(formToDelete))),
     duplicateForm: selectedForms => () => selectedForms.forEach(formToDuplicate =>

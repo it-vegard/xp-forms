@@ -49,9 +49,25 @@ export function receiveForm(formId, form) {
 }
 
 export function createNewForm() {
-  return {
-    type: 'CREATE_FORM',
+  const newFormDefinition = {
+    id: '',
+    displayName: '',
+    title: '',
+    submitButton: '',
+    successMessage: '',
+    overrideSubmitUrl: '',
+    overrideSubmitMethod: '',
+    fields: [
+      {
+        id: '',
+        label: '',
+      },
+    ],
   };
+  return dispatch =>
+    fetch(serviceUrl('form'), createRequest('PUT', newFormDefinition))
+      .then(response => response.json())
+      .then(json => dispatch(navigateTo(formAdminUrl(`/edit/${json.values._id}/`))));
 }
 
 export function loadForm(formId) {
@@ -59,7 +75,7 @@ export function loadForm(formId) {
     dispatch(loadingForm());
     return fetch(serviceUrl(`form?id=${formId}`))
       .then(response => response.json())
-      .then((json) => { dispatch(receiveForm(formId, json.form)); });
+      .then(json => dispatch(receiveForm(formId, json.form)));
   };
 }
 

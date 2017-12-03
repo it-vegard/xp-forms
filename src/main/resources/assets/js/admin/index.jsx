@@ -27,7 +27,6 @@ const AdminApp = () => (
   <Provider store={store}>
     <ConnectedRouter
       history={history}
-      basename="/admin/tool/no.vegard.enonic.xp.forms/main"
     >
       <Switch>
         <Route
@@ -36,7 +35,7 @@ const AdminApp = () => (
           component={FormStudio}
         />
         <Route
-          path="/admin/tool/no.vegard.enonic.xp.forms/main/editor/:id?"
+          path="/admin/tool/no.vegard.enonic.xp.forms/main/edit/:id?"
           component={FormEditor}
         />
         <Route

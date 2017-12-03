@@ -8,7 +8,7 @@ import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
-import { createNewForm, loadForm } from '../actions';
+import { loadForm } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -21,7 +21,6 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     onLoad: id => dispatch(loadForm(id)),
-    createNewForm: () => dispatch(createNewForm()),
   };
 }
 
@@ -29,8 +28,6 @@ class FormEditor extends React.Component {
   componentWillMount() {
     if (this.props.formId) {
       this.props.onLoad(this.props.formId);
-    } else {
-      this.props.createNewForm();
     }
   }
 
@@ -55,7 +52,6 @@ class FormEditor extends React.Component {
 }
 
 FormEditor.propTypes = {
-  createNewForm: PropTypes.func,
   formId: PropTypes.string,
   form: PropTypes.shape({
     type: PropTypes.string,

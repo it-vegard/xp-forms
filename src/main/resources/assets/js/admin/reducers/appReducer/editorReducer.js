@@ -1,14 +1,3 @@
-const NEW_FORM = {
-  id: null,
-  displayName: null,
-  title: null,
-  submitButton: null,
-  successMessage: null,
-  overrideSubmitUrl: null,
-  overrideSubmitMethod: null,
-  fields: [],
-};
-
 const editorReducer = (state = {
   isLoading: false,
   form: null,
@@ -17,7 +6,7 @@ const editorReducer = (state = {
     case 'CREATE_FORM':
       return {
         isLoading: false,
-        form: NEW_FORM,
+        form: action.form,
       };
     case 'LOADING_FORM':
       return {
