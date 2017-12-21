@@ -8,12 +8,14 @@ import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
+import LoadingWidget from '../../common/LoadingWidget';
 import { loadForm } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
     formId: ownProps.match.params.id ? ownProps.match.params.id : null,
     form: state.app.editor.form,
+    previewForm: state.form.formeditor ? state.form.formeditor.values : null,
     isLoading: state.app.editor.isLoading,
   };
 }
@@ -34,7 +36,7 @@ class FormEditor extends React.Component {
   render() {
     if (this.props.isLoading === true || !this.props.form) {
       return (
-        <p>Loading...</p>
+        <LoadingWidget />
       );
     }
     return (
@@ -45,7 +47,7 @@ class FormEditor extends React.Component {
           <FormHeader />
           <FormConfiguration />
         </FormEditorForm>
-        <FormPreview formId={this.props.formId} />
+        <FormPreview formId={this.props.formId} initialValues={this.props.previewForm} />
       </section>
     );
   }
@@ -68,6 +70,19 @@ FormEditor.propTypes = {
         id: PropTypes.string,
       })),
     }),
+  }),
+  previewForm: PropTypes.shape({
+    id: PropTypes.string,
+    displayName: PropTypes.string,
+    title: PropTypes.string,
+    submitButton: PropTypes.string,
+    successMessage: PropTypes.string,
+    overrideSubmitMethod: PropTypes.string,
+    overrideSubmitUrl: PropTypes.string,
+    fields: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      id: PropTypes.string,
+    })),
   }),
   isLoading: PropTypes.bool,
   onLoad: PropTypes.func,
