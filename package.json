@@ -37,9 +37,9 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "build": "./gradlew build",
-    "deploy": "./gradlew deploy",
-    "watch": "./gradlew deploy -t",
+    "build": "gradlew build",
+    "deploy": "gradlew deploy",
+    "watch": "gradlew -t deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
