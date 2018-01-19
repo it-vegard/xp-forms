@@ -8,7 +8,10 @@ import FormWrapper from './form';
 
 const store = createStore(
   FormsApp,
-  compose(applyMiddleware(thunkMiddleware)),
+  compose(
+    applyMiddleware(thunkMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  ),
 );
 
 const App = props => (
