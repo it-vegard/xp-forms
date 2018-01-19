@@ -29,7 +29,7 @@ function updateForm() {
   return formRepoConnection.modify({
     key: formId,
     editor: function(node){
-      node.config = newFormDefinition;
+      node = newFormDefinition;
       return node;
     },
   });
@@ -40,12 +40,13 @@ function deleteForm() {
   return formRepoConnection.delete(formId);
 }
 
-function createResponse(msg, status) {
+function createResponse(msg, status, values) {
   return {
     contentType: 'application/json',
     status: status || 200,
     body: {
       message: msg,
+      values: values,
     },
   };
 }
@@ -81,6 +82,11 @@ exports.get = function(req) {
   var form = formRepoConnection.get(req.params.id);
 
   if (form.config) {
+    if (!form.config.fields || !(form.config.fields instanceof Array)) {
+      form.config.fields = [
+        form.config.fields
+      ];
+    }
     return {
       contentType: 'application/json',
       body: {
@@ -107,23 +113,22 @@ exports.post = function(req) {
     resetGlobalFormVariables();
     return createResponse('Form is missing', 400);
   } else if (formId) {
-    runAsAdmin(updateForm);
+    var savedForm = runAsAdmin(updateForm);
     resetGlobalFormVariables();
-    return createResponse('Updated form ' + formId + '.');
+    return createResponse('Updated form ' + formId + '.', 200, savedForm);
   } else {
     var response = runAsAdmin(createForm);
     resetGlobalFormVariables();
-    return createResponse('Created form ' + response._id + '.');
+    return createResponse('Created form ' + response._id + '.', 204);
   }
 };
 
 exports.put = function(req) {
   formId = req.params.id;
   newFormDefinition = setupFormDefinition(req.body);
-
   var response = runAsAdmin(createForm);
   resetGlobalFormVariables();
-  return createResponse('Created form ' + response._id + '.');
+  return createResponse('Created form ' + response._id + '.', 201, response);
 };
 
 exports.delete = function(req) {

@@ -1,23 +1,12 @@
-const NEW_FORM = {
-  id: null,
-  displayName: null,
-  title: null,
-  submitButton: null,
-  successMessage: null,
-  overrideSubmitUrl: null,
-  overrideSubmitMethod: null,
-  fields: [],
-};
-
 const editorReducer = (state = {
   isLoading: false,
   form: null,
 }, action) => {
   switch (action.type) {
-    case 'CREATE_FORM':
+    case 'CREATED_NEW_FORM':
       return {
         isLoading: false,
-        form: NEW_FORM,
+        form: action.form,
       };
     case 'LOADING_FORM':
       return {

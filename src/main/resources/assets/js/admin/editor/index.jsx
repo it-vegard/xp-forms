@@ -8,12 +8,15 @@ import FormEditorToolbar from './FormEditorToolbar';
 import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
-import { createNewForm, loadForm } from '../actions';
+import LoadingWidget from '../../common/LoadingWidget';
+import { loadForm } from '../actions';
+import formPropType from '../../models/form';
 
 function mapStateToProps(state, ownProps) {
   return {
     formId: ownProps.match.params.id ? ownProps.match.params.id : null,
     form: state.app.editor.form,
+    previewForm: state.form.formeditor ? state.form.formeditor.values : null,
     isLoading: state.app.editor.isLoading,
   };
 }
@@ -21,7 +24,6 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     onLoad: id => dispatch(loadForm(id)),
-    createNewForm: () => dispatch(createNewForm()),
   };
 }
 
@@ -29,15 +31,13 @@ class FormEditor extends React.Component {
   componentWillMount() {
     if (this.props.formId) {
       this.props.onLoad(this.props.formId);
-    } else {
-      this.props.createNewForm();
     }
   }
 
   render() {
     if (this.props.isLoading === true || !this.props.form) {
       return (
-        <p>Loading...</p>
+        <LoadingWidget />
       );
     }
     return (
@@ -48,31 +48,19 @@ class FormEditor extends React.Component {
           <FormHeader />
           <FormConfiguration />
         </FormEditorForm>
-        <FormPreview formId={this.props.formId} />
+        <FormPreview formId={this.props.formId} initialValues={this.props.previewForm} />
       </section>
     );
   }
 }
 
 FormEditor.propTypes = {
-  createNewForm: PropTypes.func,
   formId: PropTypes.string,
   form: PropTypes.shape({
     type: PropTypes.string,
-    config: PropTypes.shape({
-      id: PropTypes.string,
-      displayName: PropTypes.string,
-      title: PropTypes.string,
-      submitButton: PropTypes.string,
-      successMessage: PropTypes.string,
-      overrideSubmitMethod: PropTypes.string,
-      overrideSubmitUrl: PropTypes.string,
-      fields: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        id: PropTypes.string,
-      })),
-    }),
+    config: PropTypes.shape(formPropType),
   }),
+  previewForm: PropTypes.shape(formPropType),
   isLoading: PropTypes.bool,
   onLoad: PropTypes.func,
 };

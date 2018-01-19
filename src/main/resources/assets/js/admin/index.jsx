@@ -17,9 +17,7 @@ const store = createStore(
   compose(
     applyMiddleware(thunkMiddleware),
     applyMiddleware(routerMiddleware(history)),
-    /* eslint-disable no-underscore-dangle */
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    /* eslint-enable */
   ),
 );
 
@@ -27,7 +25,6 @@ const AdminApp = () => (
   <Provider store={store}>
     <ConnectedRouter
       history={history}
-      basename="/admin/tool/no.vegard.enonic.xp.forms/main"
     >
       <Switch>
         <Route
@@ -36,7 +33,7 @@ const AdminApp = () => (
           component={FormStudio}
         />
         <Route
-          path="/admin/tool/no.vegard.enonic.xp.forms/main/editor/:id?"
+          path="/admin/tool/no.vegard.enonic.xp.forms/main/edit/:id?"
           component={FormEditor}
         />
         <Route
