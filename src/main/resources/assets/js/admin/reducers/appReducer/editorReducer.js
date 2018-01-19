@@ -3,7 +3,7 @@ const editorReducer = (state = {
   form: null,
 }, action) => {
   switch (action.type) {
-    case 'CREATE_FORM':
+    case 'CREATED_NEW_FORM':
       return {
         isLoading: false,
         form: action.form,

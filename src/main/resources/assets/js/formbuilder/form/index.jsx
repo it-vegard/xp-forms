@@ -6,9 +6,9 @@ import XpForm from './XpForm';
 import formPropType from '../../models/form';
 
 function mapStateToProps(state, ownProps) {
-  const formResult = state.forms.find(form => form.id === ownProps.formId);
+  const initialValues = state.forms.find(form => form.id === ownProps.formId);
   return {
-    initialValues: formResult ? formResult.config : undefined,
+    initialValues: initialValues && initialValues.config ? initialValues.config : {},
   };
 }
 
@@ -21,13 +21,13 @@ function mapDispatchToProps(dispatch, ownProps) {
 
 class FormWrapper extends React.Component {
   componentWillMount() {
-    if (!this.props.initialValues && this.props.formId) {
+    if (!this.props.initialValues.id && this.props.formId) {
       this.props.initApp(this.props.formId);
     }
   }
 
   render() {
-    if (!this.props.initialValues) {
+    if (!this.props.initialValues.id) {
       return (
         <p>Loading...</p>
       );

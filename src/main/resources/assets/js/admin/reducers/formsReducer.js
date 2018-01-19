@@ -1,7 +1,10 @@
 const formsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'CREATE_FORM':
-      return state;
+    case 'CREATED_NEW_FORM':
+      return [
+        ...state,
+        action.form,
+      ];
     case 'RECEIVE_FORMS':
       return [
         ...state.concat(action.forms.filter(newForm =>

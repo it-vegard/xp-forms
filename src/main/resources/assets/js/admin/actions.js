@@ -141,9 +141,12 @@ export function closeForm() {
 }
 
 export function selectForm(id) {
-  return {
-    type: 'SELECT_FORM',
-    id,
+  return (dispatch) => {
+    dispatch(loadForm(id));
+    dispatch({
+      type: 'SELECT_FORM',
+      id,
+    });
   };
 }
 

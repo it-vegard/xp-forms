@@ -12,7 +12,7 @@ const fieldsets = [
   'Advanced settings',
 ];
 
-const FormEditor = () => (
+const FormConfiguration = () => (
   <div>
     <FormEditorNavigation items={fieldsets} />
     <div className="xpFormEditorConfiguration">
@@ -67,4 +67,4 @@ const FormEditor = () => (
   </div>
 );
 
-export default FormEditor;
+export default FormConfiguration;

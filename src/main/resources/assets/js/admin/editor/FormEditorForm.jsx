@@ -24,23 +24,6 @@ let FormEditorForm = props => (
 FormEditorForm.propTypes = {
   handleSubmit: PropTypes.func,
   children: PropTypes.arrayOf(PropTypes.object),
-  /* formSubmitHandler: PropTypes.func, */
-  /* initialValues: PropTypes.shape({
-    type: PropTypes.string,
-    config: PropTypes.shape({
-      id: PropTypes.string,
-      displayName: PropTypes.string,
-      title: PropTypes.string,
-      submitButton: PropTypes.string,
-      successMessage: PropTypes.string,
-      overrideSubmitMethod: PropTypes.string,
-      overrideSubmitUrl: PropTypes.string,
-      fields: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        id: PropTypes.string,
-      })),
-    }),
-  }), */
 };
 
 FormEditorForm = connect(mapStateToProps)(FormEditorForm);

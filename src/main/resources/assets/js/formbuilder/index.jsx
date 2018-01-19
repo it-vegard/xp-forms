@@ -5,7 +5,7 @@ import App from './App';
 const xpFormRoot = document.getElementById('xpFormRoot');
 
 ReactDOM.render(
-  <App formId={xpFormRoot.dataset.formid} />,
+  <App formId={xpFormRoot.dataset.formId} />,
   xpFormRoot,
 );
 

@@ -10,10 +10,17 @@ import ScrollableColumn from '../common/ScrollableColumn';
 import FlexibleColumn from '../common/FlexibleColumn';
 import Toolbar from '../common/Toolbar';
 import FormStudioOverview from './overview';
+import FormPreview from '../editor/preview/FormPreview';
+import formPropType from '../../models/form';
 
 function mapStateToProps(state) {
+  const { selectedForms } = state.app.formStudio;
+  const previewFormId = selectedForms[0];
+  const previewForm = state.forms.find(form => form.id === previewFormId);
   return {
-    selectedForms: state.app.formStudio.selectedForms,
+    selectedForms,
+    previewFormId,
+    previewForm: previewForm ? previewForm.config : undefined,
   };
 }
 
@@ -75,6 +82,17 @@ class FormStudio extends React.Component {
     ];
   }
 
+  renderFormPreview() {
+    if (this.props.previewFormId && this.props.previewForm) {
+      return (
+        <FormPreview formId={this.props.previewFormId} initialValues={this.props.previewForm} />
+      );
+    }
+    return (
+      <div>Velg et skjema i listen til venstre</div>
+    );
+  }
+
   render() {
     return (
       <section id="xpFormStudio">
@@ -84,7 +102,7 @@ class FormStudio extends React.Component {
           <FormStudioOverview />
         </ScrollableColumn>
         <FlexibleColumn>
-          <p>TODO</p>
+          {this.renderFormPreview()}
         </FlexibleColumn>
       </section>
     );
@@ -101,6 +119,8 @@ FormStudio.propTypes = {
   // moveForm: PropTypes.func,
   // sort: PropTypes.func,
   goToPreview: PropTypes.func,
+  previewForm: PropTypes.shape(formPropType),
+  previewFormId: PropTypes.string,
   selectedForms: PropTypes.arrayOf(PropTypes.string),
 };
 
