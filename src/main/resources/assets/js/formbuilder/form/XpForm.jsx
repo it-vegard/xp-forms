@@ -3,6 +3,7 @@ import { reduxForm, Form } from 'redux-form';
 import PropTypes from 'prop-types';
 import TextInput from './fields/TextInput';
 import LoadingWidget from '../../common/LoadingWidget';
+import formPropType from '../../models/form';
 
 /* function hasCompleteInputField(fields) {
   return fields.filter(field => (field.xpInputId || field.id) && field.label).length > 0;
@@ -35,19 +36,7 @@ const XpForm = (props) => {
 
 XpForm.propTypes = {
   handleSubmit: PropTypes.func,
-  initialValues: PropTypes.shape({
-    id: PropTypes.string,
-    displayName: PropTypes.string,
-    title: PropTypes.string,
-    submitButton: PropTypes.string,
-    successMessage: PropTypes.string,
-    overrideSubmitMethod: PropTypes.string,
-    overrideSubmitUrl: PropTypes.string,
-    fields: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string,
-      id: PropTypes.string,
-    })),
-  }),
+  initialValues: PropTypes.shape(formPropType),
 };
 
 export default reduxForm()(XpForm);

@@ -10,6 +10,7 @@ import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
 import LoadingWidget from '../../common/LoadingWidget';
 import { loadForm } from '../actions';
+import formPropType from '../../models/form';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -57,33 +58,9 @@ FormEditor.propTypes = {
   formId: PropTypes.string,
   form: PropTypes.shape({
     type: PropTypes.string,
-    config: PropTypes.shape({
-      id: PropTypes.string,
-      displayName: PropTypes.string,
-      title: PropTypes.string,
-      submitButton: PropTypes.string,
-      successMessage: PropTypes.string,
-      overrideSubmitMethod: PropTypes.string,
-      overrideSubmitUrl: PropTypes.string,
-      fields: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string,
-        id: PropTypes.string,
-      })),
-    }),
+    config: PropTypes.shape(formPropType),
   }),
-  previewForm: PropTypes.shape({
-    id: PropTypes.string,
-    displayName: PropTypes.string,
-    title: PropTypes.string,
-    submitButton: PropTypes.string,
-    successMessage: PropTypes.string,
-    overrideSubmitMethod: PropTypes.string,
-    overrideSubmitUrl: PropTypes.string,
-    fields: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string,
-      id: PropTypes.string,
-    })),
-  }),
+  previewForm: PropTypes.shape(formPropType),
   isLoading: PropTypes.bool,
   onLoad: PropTypes.func,
 };
