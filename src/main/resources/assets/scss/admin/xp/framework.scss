@@ -34,7 +34,7 @@
     min-width: 425px;
     overflow-y: scroll;
     resize: horizontal;
-    height: calc(100vh - (#{$minimum-click-size} * 2));
+    height: calc(100vh - (#{$minimum-click-size} * 2) - 1px);
     box-sizing: border-box;
   }
 
