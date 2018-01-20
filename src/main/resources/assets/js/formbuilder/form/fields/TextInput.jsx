@@ -8,28 +8,26 @@ const resolveClassName = className => concatClassNames(
   className,
 );
 
-const TextInput = (props) => {
-  return (
-    <label
-      htmlFor={props.id || textToName(props.label)}
-      className="xpFormEditorLabel"
-    >
-      {
+const TextInput = props => (
+  <label
+    htmlFor={props.id || textToName(props.label)}
+    className="xpFormEditorLabel"
+  >
+    {
         props.label &&
         <span>{props.label}</span>
       }
-      <Field
-        component="input"
-        id={props.id || textToName(props.label)}
-        type="text"
-        name={props.id || textToName(props.label)}
-        placeholder={props.placeholder}
-        className={resolveClassName(props.className)}
-        required={props.required}
-      />
-    </label>
-  );
-};
+    <Field
+      component="input"
+      id={props.id || textToName(props.label)}
+      type="text"
+      name={props.id || textToName(props.label)}
+      placeholder={props.placeholder}
+      className={resolveClassName(props.className)}
+      required={props.required}
+    />
+  </label>
+);
 
 TextInput.propTypes = {
   id: PropTypes.string,
