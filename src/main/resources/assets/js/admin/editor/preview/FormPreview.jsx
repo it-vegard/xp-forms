@@ -10,7 +10,7 @@ const FormPreview = props => (
       <XpForm
         form={props.formId}
         initialValues={props.initialValues}
-        handleSubmit={values => console.log('Submitting: ', values)}
+        handleSubmit={() => {}}
       />
     }
   </div>

@@ -9,9 +9,6 @@ const resolveClassName = className => concatClassNames(
 );
 
 const TextInput = (props) => {
-  if (!props.id || !props.label) {
-    console.warn('Input field is not correctly configured.');
-  }
   return (
     <label
       htmlFor={props.id || textToName(props.label)}
