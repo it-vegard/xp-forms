@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function getId(id, optionId) {
-  return `${id}-${optionId}`;
+  if (id && optionId) {
+    return `${id}-${optionId}`;
+  }
+  return undefined;
 }
 
 class FormsOverviewList extends React.Component {
