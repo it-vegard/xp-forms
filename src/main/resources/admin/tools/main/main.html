@@ -6,33 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000000">
 
-  <title data-th-text="${appLauncherConfig.appName}"></title>
+  <title data-th-text="${appName}"></title>
 
-  <link rel="icon" type="image/png" data-th-href="${formBuilderAdmin.faviconUrl}" sizes="128x128">
+  <link rel="icon" type="image/png" data-th-href="${xpFormsFaviconUrl}" sizes="128x128">
 
   <!-- Styles -->
-  <link rel="stylesheet" type="text/css" data-th-href="${appLauncherConfig.assetsUri} + '/common/styles/_all.css'">
-  <link rel="stylesheet" type="text/css" data-th-href="${formBuilderAdmin.cssUrl}">
-
-  <!-- Common lib -->
-  <script type="text/javascript" data-th-src="${appLauncherConfig.assetsUri} + '/common/lib/_all.js'"></script>
+  <link rel="stylesheet" type="text/css" data-th-href="${xpFormsCssUrl}">
 
 </head>
 <body>
 
-  <div id="formsAdmin"></div>
-  
-  <!-- Configuration -->
-  <script type="text/javascript" data-th-inline="javascript">
-    /*<![CDATA[*/
-    var CONFIG = /*[[${appLauncherConfig}]]*/;
-    /*]]>*/
-  </script>
+  <div data-th-id="${appId}"></div>
 
-  <!-- Append the Launcher Panel -->
-  <script type="text/javascript" data-th-src="${appLauncherConfig.assetsUri} + '/apps/launcher/js/_all.js'" async></script>
-
-  <script type="text/javascript" data-th-src="${formBuilderAdmin.jsUrl}"></script>
+  <script type="text/javascript" data-th-src="${xpFormsJsUrl}"></script>
 
 </body>
 </html>
