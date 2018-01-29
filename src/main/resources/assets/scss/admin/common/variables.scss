@@ -4,6 +4,8 @@ $logo-width-large: 64px;
 
 /*** Colors ***/
 $button-text: #777777;
+$button-text-light: #ffffff;
+$background-dark: #000000;
 
 /*** ***/
 $font-size-small: 12px;
@@ -18,3 +20,6 @@ $appbar-height: $minimum-click-size;
 $default-padding-horizontal: 16px;
 
 $checkbox-size: 16px;
+
+/*** Positioning ***/
+$launcher-z-index: 2500;

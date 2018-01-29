@@ -162,3 +162,14 @@ export function resetFormStudio() {
     type: 'RESET_FORM_STUDIO',
   };
 }
+
+export function initializeFormsAdmin() {
+  return dispatch =>
+    fetch(serviceUrl('launcher'))
+      .then(response => response.json())
+      .then(json => dispatch({
+        type: 'INITIALIZE_FORMS_ADMIN',
+        launcherTitle: json.launcherTitle,
+        launcherConfig: json.launcherConfig,
+      }));
+}

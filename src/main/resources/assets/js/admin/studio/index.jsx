@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { push as navigateTo } from 'react-router-redux';
 import AppBar from '../common/AppBar';
-import { loadForms, duplicateForm, deleteForm, resetFormStudio, createNewForm } from '../actions';
+import { loadForms, duplicateForm, deleteForm, resetFormStudio, createNewForm, initializeFormsAdmin } from '../actions';
 import { formAdminUrl } from '../util/EnonicHelper';
 import ScrollableColumn from '../common/ScrollableColumn';
 import FlexibleColumn from '../common/FlexibleColumn';
@@ -26,7 +26,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoad: () => dispatch(loadForms()),
+    onLoad: () => {
+      dispatch(loadForms());
+      dispatch(initializeFormsAdmin());
+    },
     onUnmount: () => dispatch(resetFormStudio()),
     createNewForm: () => dispatch(createNewForm()),
     editForm: selectedForms => () => dispatch(navigateTo(formAdminUrl(`/edit/${selectedForms[0]}/`))),
