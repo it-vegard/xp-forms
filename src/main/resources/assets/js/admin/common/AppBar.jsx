@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Launcher from './Launcher';
 import { assetUrl } from '../util/EnonicHelper';
 
 const AppBar = props => (
@@ -10,6 +11,7 @@ const AppBar = props => (
       alt=""
     />
     <span className="xpAppBarHeading">{props.heading}</span>
+    <Launcher />
   </div>
 );
 

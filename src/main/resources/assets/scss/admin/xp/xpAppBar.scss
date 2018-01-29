@@ -1,10 +1,12 @@
+@import "../common/variables";
+
 .xpAppBar {
   background-color: #333333;
   color: #fff;
   height: $appbar-height;
   padding: 0 10px 0 $default-padding-horizontal;
   display: grid;
-  grid-template-columns: $logo-width-small auto;
+  grid-template-columns: $logo-width-small auto $minimum-click-size;
   grid-template-rows: auto;
   grid-template-areas: "logo heading";
   grid-gap: 10px;
