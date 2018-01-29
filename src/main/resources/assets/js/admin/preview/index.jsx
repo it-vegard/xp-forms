@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import FormWrapper from '../../formbuilder/form';
+import LoadingWidget from '../../common/LoadingWidget';
 
 const FormPreview = (props) => {
   if (!props.match.params.id) {
     return (
-      <p>Loading...</p>
+      <LoadingWidget />
     );
   }
   return (

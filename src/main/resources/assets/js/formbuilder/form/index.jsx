@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { initForm, submitForm } from '../actions';
 import XpForm from './XpForm';
 import formPropType from '../../models/form';
+import LoadingWidget from '../../common/LoadingWidget';
 
 function mapStateToProps(state, ownProps) {
   const initialValues = state.forms.find(form => form.id === ownProps.formId);
@@ -29,7 +30,7 @@ class FormWrapper extends React.Component {
   render() {
     if (!this.props.initialValues.id) {
       return (
-        <p>Loading...</p>
+        <LoadingWidget />
       );
     }
     return (
