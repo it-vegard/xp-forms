@@ -1,3 +1,5 @@
+@import '../common/variables';
+
 $logo-width: 64px;
 $default-margin-right: 25px;
 $default-margin-bottom: 10px;
@@ -65,7 +67,6 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   font-family: "icomoon", sans-serif;
   font-size: 22px;
   font-weight: bold;
-  text-align: right;
   width: $minimum-click-size;
   height: $minimum-click-size;
   padding: 0;
@@ -74,6 +75,9 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  position: absolute;
+  top: $delete-field-position;
+  right: $delete-field-position;
 }
 
 .xpFormEditorFieldset > :last-child {

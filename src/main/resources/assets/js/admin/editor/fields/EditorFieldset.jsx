@@ -5,7 +5,7 @@ import { textToName } from '../../util/StringUtil';
 const EditorFieldset = props => (
   <fieldset className="xpFormEditorFieldset" id={textToName(props.legend)}>
     <legend>
-      <span className="drag-handle">:::</span>
+      <span className="drag-handle" aria-hidden="true">:::</span>
       {props.legend}
     </legend>
     <button
