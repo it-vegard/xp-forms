@@ -9,7 +9,7 @@ import FormHeader from './FormHeader';
 import FormConfiguration from './FormConfiguration';
 import FormPreview from './preview/FormPreview';
 import LoadingWidget from '../../common/LoadingWidget';
-import { loadForm } from '../actions';
+import { initializeFormsAdmin, loadForm } from '../actions';
 import formPropType from '../../models/form';
 
 function mapStateToProps(state, ownProps) {
@@ -23,7 +23,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoad: id => dispatch(loadForm(id)),
+    onLoad: (id) => {
+      dispatch(loadForm(id));
+      dispatch(initializeFormsAdmin());
+    },
   };
 }
 
