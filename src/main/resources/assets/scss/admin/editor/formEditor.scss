@@ -49,13 +49,14 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   padding: 10px;
   background-color: $primaryBackgroundColor;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .xpFormEditorFieldset legend {
   font-size: 14px;
   color: #777777;
   float: left;
-  width: calc(100% - #{$minimum-click-size});
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -77,7 +78,7 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
   cursor: pointer;
   position: absolute;
   top: $delete-field-position;
-  right: $delete-field-position;
+  right: 0;
 }
 
 .xpFormEditorFieldset > :last-child {

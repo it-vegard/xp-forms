@@ -16,19 +16,23 @@ $default-input-font-size: 16px;
   line-height: 16px;
 }
 
-.xpFormTextInput {
+.xpFormTextInput,
+.xpFormSelect {
   height: 37px;
 }
 
-.xpFormTextInput.largeSize {
+.xpFormTextInput.largeSize,
+.xpFormSelect.largeSize {
   font-size: $default-input-font-size * 2;
 }
 
-.xpFormTextInput.normalSize {
+.xpFormTextInput.normalSize,
+.xpFormSelect.normalSize {
   font-size: $default-input-font-size * 1.5;
 }
 
-.xpFormTextInput.smallSize {
+.xpFormTextInput.smallSize,
+.xpFormSelect.smallSize {
   font-size: $default-input-font-size;
 }
 
