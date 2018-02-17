@@ -1,9 +1,9 @@
 import React from 'react';
 import { reduxForm, Form } from 'redux-form';
 import PropTypes from 'prop-types';
-import TextInput from './fields/TextInput';
 import LoadingWidget from '../../common/LoadingWidget';
 import formPropType from '../../models/form';
+import InputField from './fields/InputField';
 
 /* function hasCompleteInputField(fields) {
   return fields.filter(field => (field.xpInputId || field.id) && field.label).length > 0;
@@ -23,12 +23,13 @@ const XpForm = (props) => {
       <p>Add an input field to initialize form.</p>
     );
   }
+
   return (
     <Form
       onSubmit={props.handleSubmit}
     >
       { fields.map(field =>
-        <TextInput key={field.xpInputId || field.id} id={field.id} label={field.label} />)}
+        <InputField key={field.xpInputId || field.id} field={field} />)}
       { submitButton && <button type="submit">{ submitButton }</button> }
     </Form>
   );

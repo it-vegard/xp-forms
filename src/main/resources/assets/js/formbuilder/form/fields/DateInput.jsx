@@ -8,30 +8,28 @@ const resolveClassName = className => concatClassNames(
   className,
 );
 
-const TextInput = ({
-  className, id, label, placeholder, required,
-}) => (
+const DateInput = props => (
   <label
-    htmlFor={id || textToName(label)}
+    htmlFor={props.id || textToName(props.label)}
     className="xpFormEditorLabel"
   >
     {
-      label &&
-      <span>{label}</span>
-    }
+        props.label &&
+        <span>{props.label || 'Date'}</span>
+      }
     <Field
       component="input"
-      id={id || textToName(label)}
-      type="text"
-      name={id || textToName(label)}
-      placeholder={placeholder}
-      className={resolveClassName(className)}
-      required={required}
+      id={props.id || textToName(props.label)}
+      type="date"
+      name={props.id || textToName(props.label)}
+      placeholder={props.placeholder}
+      className={resolveClassName(props.className)}
+      required={props.required}
     />
   </label>
 );
 
-TextInput.propTypes = {
+DateInput.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
@@ -39,8 +37,8 @@ TextInput.propTypes = {
   required: PropTypes.bool,
 };
 
-TextInput.defaultProps = {
-  label: 'Text',
+DateInput.defaultProps = {
+  label: 'Date',
 };
 
-export default TextInput;
+export default DateInput;

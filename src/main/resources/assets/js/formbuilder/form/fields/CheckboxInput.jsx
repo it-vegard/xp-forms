@@ -8,39 +8,37 @@ const resolveClassName = className => concatClassNames(
   className,
 );
 
-const TextInput = ({
-  className, id, label, placeholder, required,
+const CheckboxInput = ({
+  className, id, label, required,
 }) => (
   <label
     htmlFor={id || textToName(label)}
     className="xpFormEditorLabel"
   >
     {
-      label &&
-      <span>{label}</span>
-    }
+        label &&
+        <span>{label}</span>
+      }
     <Field
       component="input"
       id={id || textToName(label)}
-      type="text"
+      type="checkbox"
       name={id || textToName(label)}
-      placeholder={placeholder}
       className={resolveClassName(className)}
       required={required}
     />
   </label>
 );
 
-TextInput.propTypes = {
+CheckboxInput.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   className: PropTypes.string,
   required: PropTypes.bool,
 };
 
-TextInput.defaultProps = {
-  label: 'Text',
+CheckboxInput.defaultProps = {
+  label: 'Checkbox',
 };
 
-export default TextInput;
+export default CheckboxInput;
