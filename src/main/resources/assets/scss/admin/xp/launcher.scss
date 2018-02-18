@@ -84,6 +84,10 @@
   border: 0;
   position: fixed;
   z-index: ($launcher-z-index + 1);
+  
+  &:focus {
+    outline-color: #ffffff;
+  }
 
   .xpLauncher.open & {
     background-image: url('~../img/icons/hamburger.svg');

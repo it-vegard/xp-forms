@@ -1,12 +1,13 @@
 .detailsButton {
-  background-color: #999999;
+  background-color: #767676;
   border: 0;
   color: #ffffff;
   line-height: 24px;
   padding: 4px 19px;
 
   &:focus, &:hover {
-    background-color: #b3b3b3;
+    background-color: #e3e3e3;
+    color: #565656;
   }
 
   &--open {
