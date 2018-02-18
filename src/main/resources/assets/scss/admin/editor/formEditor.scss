@@ -22,14 +22,17 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
     min-width: 425px;
     overflow-y: scroll;
     resize: horizontal;
-    height: calc(100vh - (3 * #{$minimum-click-size}));
+    height: calc(100vh - (3 * #{$minimum-click-size}) - 16px);
     padding-top: 15px;
     padding-bottom: $minimum-click-size;
   }
 
   .xpFormPreview {
-    height: calc(100vh - #{$minimum-click-size} - 44px);
+    height: calc(100vh - (3 * #{$minimum-click-size}) - 16px);
     overflow: hidden;
+    overflow-y: auto;
+    padding-top: 15px;
+    padding-bottom: $minimum-click-size;
   }
 
 }
