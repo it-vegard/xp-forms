@@ -5,20 +5,22 @@
 }
 
 .xpLauncherList {
-  display: none;
+  visibility: hidden;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -$launcher-width;
   z-index: $launcher-z-index;
   height: 100%;
-  width: 320px;
+  width: $launcher-width;
   background-color: $background-dark;
   list-style: none;
   box-shadow: -2px 0px 7px 5px rgba(0, 0, 0, 0.3);
-  transition: right 300ms ease-out;
+  transition: $launcher-transition-time;
 
   .xpLauncher.open & {
-    display: block;
+    visibility: visible;
+    right: 0;
+    transition: $launcher-transition-time;
   }
 
   & li {

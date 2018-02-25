@@ -18,9 +18,13 @@ $font-size-x-large: 24px;
 $minimum-click-size: 44px;
 $appbar-height: $minimum-click-size;
 $default-padding-horizontal: 16px;
+$launcher-width: 320px;
 
 $checkbox-size: 16px;
 
 /*** Positioning ***/
 $launcher-z-index: 2500;
 $delete-field-position: 22px;
+
+/*** Animations ***/
+$launcher-transition-time: 400ms;
