@@ -39,8 +39,19 @@ class Launcher extends React.Component {
           id="xpLauncher"
         >
           <h2 id="xpLauncherHeading" className="xpFormsVisuallyHidden">Applications</h2>
-          <button className="xpLauncherToggle" onClick={that.toggleLauncher}>
-            <span className="xpFormsVisuallyHidden">Menu</span>
+          <button
+            className="xpLauncherToggle"
+            onClick={that.toggleLauncher}
+          >
+            <svg className="xpLauncherToggle__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <title>Menu</title>
+              <g>
+                <path className="xpLauncherToggle__icon__line" d="M13,26.5 L88,26.5" />
+                <path className="xpLauncherToggle__icon__line" d="M13,50.5 L88,50.5" />
+                <path className="xpLauncherToggle__icon__line" d="M13,50.5 L88,50.5" />
+                <path className="xpLauncherToggle__icon__line" d="M13,74.5 L88,74.5" />
+              </g>
+            </svg>
           </button>
           <ul className="xpLauncherList">
             <li>

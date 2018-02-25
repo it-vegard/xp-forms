@@ -75,10 +75,7 @@
 }
 
 .xpLauncherToggle {
-  background: url('~../img/icons/hamburger.svg');
-  background-size: ($minimum-click-size - 20px);
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+  background-color: transparent;
   height: $minimum-click-size;
   width: $minimum-click-size;
   border: 0;
@@ -89,8 +86,31 @@
     outline-color: #ffffff;
   }
 
-  .xpLauncher.open & {
-    background-image: url('~../img/icons/hamburger.svg');
+  &__icon {
+    stroke: #ffffff;
+    stroke-width: 8px;
+
+    &__line {
+      transition: all 250ms ease-in-out;
+      transform: rotate(0deg);
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+
+      .open & {
+        &:nth-child(1),
+        &:nth-child(4) {
+          opacity: 0;
+        }
+
+        &:nth-child(2) {
+          transform: rotate(45deg);
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+      }
+    }
   }
 }
 
