@@ -4,6 +4,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
