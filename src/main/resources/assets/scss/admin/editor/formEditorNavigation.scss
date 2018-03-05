@@ -13,7 +13,8 @@
   padding: 0 $navigationTabArrowHeight;
   text-align: center;
 
-  &:hover a, &:focus a {
+  &:hover a,
+  &:focus a {
     color: darken(#acacac, 20%);
   }
 }
@@ -21,11 +22,12 @@
 .xpFormEditorNavigation li.active {
   background-color: $navigationTabActiveBackgroundColor;
 
-  &:before, &:after {
+  &::before,
+  &::after {
     display: block;
   }
 
-  &:before {
+  &::before {
     content: " ";
     float: left;
     margin-left: -$navigationTabArrowHeight;
@@ -34,7 +36,7 @@
     border-left: ($navigationTabArrowHeight / 2) solid $navigationTabBackgroundColor;
   }
 
-  &:after {
+  &::after {
     content: " ";
     float: right;
     margin-right: -$navigationTabArrowHeight;

@@ -1,10 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: 'production',
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
@@ -79,6 +79,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new StyleLintPlugin({
+      files: ['**/*.s?(a|c)ss'],
+      syntax: 'scss',
+    }),
     new ExtractTextPlugin('formsAdmin.css'),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /formsAdmin\.css$/,

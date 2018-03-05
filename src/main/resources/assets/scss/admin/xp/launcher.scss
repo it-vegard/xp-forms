@@ -14,7 +14,7 @@
   width: $launcher-width;
   background-color: $background-dark;
   list-style: none;
-  box-shadow: -2px 0px 7px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: -2px 0 7px 5px rgba(0, 0, 0, 0.3);
   transition: $launcher-transition-time;
 
   .xpLauncher.open & {
@@ -24,7 +24,6 @@
   }
 
   & li {
-
     &:first-of-type > h3 {
       font-size: 32px;
       font-weight: 100;
@@ -41,7 +40,8 @@
       color: $button-text-light;
       text-decoration: none;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: rgba(255, 255, 255, 0.3);
         outline: 0;
       }
@@ -83,7 +83,7 @@
   border: 0;
   position: fixed;
   z-index: ($launcher-z-index + 1);
-  
+
   &:focus {
     outline-color: #ffffff;
   }

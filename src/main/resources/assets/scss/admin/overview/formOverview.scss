@@ -8,7 +8,7 @@
   padding: 0 $default-padding-horizontal;
   font-size: $font-size-medium;
 
-  &:before {
+  &::before {
     content: ' ';
     display: inline-block;
     background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-checked.gif');
@@ -57,7 +57,7 @@
     background-color: #eeeeee;
   }
 
-  &:before {
+  &::before {
     content: ' ';
     display: inline-block;
     background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-unchecked.gif');
@@ -69,7 +69,7 @@
     margin-right: 74px;
   }
 
-  &.xpFormsOverviewListBoxOption--checked:before {
+  &.xpFormsOverviewListBoxOption--checked::before {
     background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/admin-checked.gif');
   }
 

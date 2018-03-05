@@ -14,7 +14,6 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 /*** Editor framework ***/
 
 @media screen and (min-width: 768px) {
-
   .xpFormEditorForm {
     display: inline-block;
     float: left;
@@ -34,7 +33,6 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
     padding-top: 15px;
     padding-bottom: $minimum-click-size;
   }
-
 }
 
 /*** Form editor ***/
@@ -95,21 +93,14 @@ $navigationTabActiveBackgroundColor: $primaryBackgroundColor;
 
 .xpFormEditorConfigurationHeading {
   font-size: 25px;
-  line-height:20px;
+  line-height: 20px;
   margin-bottom: 30px;
   box-sizing: border-box;
   width: calc(100% + 20px);
   border-bottom: 1px solid #cccccc;
   margin-left: -10px;
   padding-left: 10px;
-
 }
 
 @import "formEditorToolbar";
-
 @import "formEditorNavigation";
-
-/*** Temporary overrides ***/
-/* body {
-  overflow-y: initial;
-} */
