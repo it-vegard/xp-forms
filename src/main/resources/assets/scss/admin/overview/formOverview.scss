@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   background-color: #fafafa;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 0.0625rem solid #eeeeee;
   height: $minimum-click-size;
   padding: 0 $default-padding-horizontal;
   font-size: $font-size-medium;
@@ -18,7 +18,7 @@
     width: $checkbox-size;
     height: $checkbox-size;
     margin-top: (($minimum-click-size - $checkbox-size)/2);
-    margin-right: 35px;
+    margin-right: 2.1875rem;
     margin-bottom: (($minimum-click-size - $checkbox-size)/2);
   }
 }
@@ -45,8 +45,8 @@
   padding: 0 $default-padding-horizontal;
   background-image: url('/_/asset/no.vegard.enonic.xp.forms/img/icons/adminFavicon.png');
   background-repeat: no-repeat;
-  background-position: 64px;
-  background-size: 25px;
+  background-position: 4rem;
+  background-size: 1.5625rem;
   font-size: $font-size-medium;
 
   &:focus {
@@ -66,7 +66,7 @@
     background-size: $checkbox-size $checkbox-size;
     width: $checkbox-size;
     height: $minimum-click-size;
-    margin-right: 74px;
+    margin-right: 4.625rem;
   }
 
   &.xpFormsOverviewListBoxOption--checked::before {
@@ -79,5 +79,5 @@
 }
 
 .xpFormsOverviewListBoxOptionText {
-  line-height: 44px;
+  line-height: $minimum-click-size;
 }

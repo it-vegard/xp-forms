@@ -2,14 +2,14 @@
 
 .xpFormEditorNavigation {
   background-color: #eeeeee;
-  box-shadow: 0 10px 10px -10px #a1a1a1;
-  margin-bottom: 30px;
+  box-shadow: 0 0.625rem 0.625rem -0.625rem #a1a1a1;
+  margin-bottom: 1.875rem;
 }
 
 .xpFormEditorNavigation li {
   display: inline-block;
   font-size: $default-input-font-size;
-  line-height: 42px;
+  line-height: 2.625rem;
   padding: 0 $navigationTabArrowHeight;
   text-align: center;
 

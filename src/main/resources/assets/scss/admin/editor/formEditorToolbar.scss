@@ -1,24 +1,24 @@
-$default-margin-right: 25px;
-$default-margin-bottom: 10px;
+$default-margin-right: 1.5625rem;
+$default-margin-bottom: 0.625rem;
 $button-text: #777777;
 
 /*** Editor toolbar styling ***/
 
 .xpFormEditorToolbar {
-  height: 44px;
-  border-bottom: 1px solid #ccc;
+  height: $minimum-click-size;
+  border-bottom: 0.0625rem solid #ccc;
 }
 
 .xpFormEditorControls__item {
   display: inline-block;
-  line-height: 44px;
+  line-height: $minimum-click-size;
   padding: 0 $default-padding-horizontal;
 }
 
 .xpFormEditorControls__button {
   border: 0;
   background-color: transparent;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-family: "Open Sans", sans-serif;
   color: $button-text;
   padding: 0;

@@ -1,15 +1,15 @@
 .formButton {
-  padding: 4px 19px;
+  padding: 0.25rem 1.1875rem;
   border: 0;
   background-color: #999999;
   color: white;
-  line-height: 24px;
-  font-size: 14px;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
   font-family: "Open Sans", sans-serif;
 }
 
 .xpFormAddInputFieldButton {
   @extend .formButton;
 
-  padding: 0 15px;
+  padding: 0 0.9375rem;
 }

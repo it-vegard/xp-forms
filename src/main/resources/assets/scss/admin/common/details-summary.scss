@@ -2,8 +2,8 @@
   background-color: #767676;
   border: 0;
   color: #ffffff;
-  line-height: 24px;
-  padding: 4px 19px;
+  line-height: 1.5rem;
+  padding: 0.25rem 1.1875rem;
 
   &:focus,
   &:hover {
@@ -12,6 +12,6 @@
   }
 
   &--open {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
   }
 }

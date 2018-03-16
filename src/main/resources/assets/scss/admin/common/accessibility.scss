@@ -1,12 +1,12 @@
 *:focus {
-  outline: 3px solid #666666;
+  outline: 0.1875rem solid #666666;
 }
 
 .xpFormsVisuallyHidden {
   position: absolute;
   white-space: nowrap;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   overflow: hidden;
   border: 0;
   padding: 0;

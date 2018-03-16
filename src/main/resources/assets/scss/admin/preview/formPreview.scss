@@ -1,11 +1,11 @@
 @import '../common/variables';
 
 .xpFormPreview {
-  padding: 20px;
+  padding: 1.25rem;
 }
 
-@media screen and (min-width: 876px) {
+@media screen and (min-width: 54.75rem) {
   .xpFormPreview {
-    padding: 15px 50px #{$minimum-click-size};
+    padding: 0.9375rem 3.125rem #{$minimum-click-size};
   }
 }

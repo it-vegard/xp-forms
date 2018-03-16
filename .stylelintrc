@@ -8,6 +8,16 @@
         "ignores"
       ]
     }],
-    "color-hex-length": null
+    "color-hex-length": null,
+    "unit-whitelist": [
+      "ch",
+      "deg",
+      "em",
+      "ms",
+      "rem",
+      "vh",
+      "vw",
+      "%"
+    ]
   }
 }

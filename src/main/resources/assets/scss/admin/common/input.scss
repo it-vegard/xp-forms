@@ -1,24 +1,24 @@
-$default-input-padding: 5px;
-$default-input-font-size: 16px;
+$default-input-padding: 0.3125rem;
+$default-input-font-size: 1rem;
 
 /*** Input styling ***/
 
 .xpFormEditorLabel {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .xpFormInput {
-  border: 1px solid #98c9f2;
+  border: 0.0625rem solid #98c9f2;
   box-sizing: border-box;
   width: 100%;
-  padding: 4px 10px;
-  line-height: 16px;
+  padding: 0.25rem 0.625rem;
+  line-height: 1rem;
 }
 
 .xpFormTextInput,
 .xpFormSelect {
-  height: 37px;
+  height: 2.3125rem;
 }
 
 .xpFormTextInput.largeSize,
@@ -37,7 +37,7 @@ $default-input-font-size: 16px;
 }
 
 .xpFormHtmlInput {
-  min-height: 52px;
+  min-height: 3.25rem;
 }
 
 .xpFormInput.noLabel {
@@ -45,7 +45,7 @@ $default-input-font-size: 16px;
 
   &:hover,
   &:focus {
-    border: 1px solid #999999;
-    padding: 1px;
+    border: 0.0625rem solid #999999;
+    padding: 0.0625rem;
   }
 }
