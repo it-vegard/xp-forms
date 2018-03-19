@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import LauncherItem from './LauncherItem';
 
 const mapStateToProps = (state, ownProps) => ({
   adminTools: state.admin.launcher.tools,
@@ -57,29 +58,12 @@ class Launcher extends React.Component {
             <li>
               <h3>Demo</h3>
             </li>
-            {this.props.adminTools.map((tool) => {
-              const launcherItemClassName = ['xpLauncherList__item'];
-              if (that.props.currentApplication.indexOf(tool.key.application) !== -1) {
-                launcherItemClassName.push('current');
-              }
-              const launcherItemIcon = { __html: tool.icon };
-              return (
-                <li
-                  key={tool.key.application}
-                >
-                  <a href={`/admin/tool/${tool.key.application}/${tool.key.name}`}>
-                    <div className={launcherItemClassName.join(' ')}>
-                      <div
-                        className="xpLauncherList__item__icon"
-                        dangerouslySetInnerHTML={launcherItemIcon} // eslint-disable-line no-danger
-                      />
-                      <span className="xpLauncherList__item__title">{tool.displayName}</span>
-                      <span className="xpLauncherList__item__description">{tool.description}</span>
-                    </div>
-                  </a>
-                </li>
-              );
-            })}
+            {this.props.adminTools.map(tool => (
+              <LauncherItem
+                currentApplication={that.props.currentApplication}
+                tool={tool}
+              />
+            ))}
           </ul>
         </nav>
       );
