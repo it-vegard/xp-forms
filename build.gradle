@@ -43,38 +43,3 @@ node {
     download = true
 }
 
-task webpack(type: NodeTask) {
-    script = file('node_modules/webpack/bin/webpack.js')
-}
-
-task copyTask(type: Copy) {
-    from 'src/main/resources/application.svg'
-    into 'build/resources/main/admin/tools/main/'
-    rename (
-        'application.svg',
-        'main.svg'
-    )
-}
-
-task svg2png(type: org.gradle.api.tasks.JavaExec) {
-    classpath configurations.rasterizer
-    main "org.apache.batik.apps.rasterizer.Main"
-    // -scriptSecurityOff required as the security manager of batik would interfere with the security manager of gradle
-    args "-scriptSecurityOff", "-d", "build/resources/main/assets/img/icons/adminFavicon.png", "-m", "image/png", "src/main/resources/application.svg", "-bg", "0.0.0.255"
-}
-
-// copies application logo into the form admin tool folder
-copyTask.dependsOn npmInstall
-copyTask.mustRunAfter npmInstall
-
-// converts svg logo and copies it into the image assets folder
-svg2png.dependsOn copyTask
-svg2png.mustRunAfter copyTask
-
-// processes your package.json before running webpack
-webpack.dependsOn 'svg2png'
-
-// bundles app
-build.dependsOn webpack
-build.mustRunAfter webpack
-
