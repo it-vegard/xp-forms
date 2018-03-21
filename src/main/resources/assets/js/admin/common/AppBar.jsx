@@ -10,7 +10,7 @@ const AppBar = props => (
       className="xpFormLogo"
       alt=""
     />
-    <span className="xpAppBarHeading">{props.heading}</span>
+    <h1 className="xpAppBarHeading">{props.heading}</h1>
     <Launcher />
   </div>
 );
