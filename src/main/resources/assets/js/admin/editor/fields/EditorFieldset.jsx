@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { textToName } from '../../util/StringUtil';
 
 const EditorFieldset = props => (
-  <fieldset className="xpFormEditorFieldset" id={textToName(props.legend)}>
+  <fieldset className="xpFormEditorFieldset" id={textToName(props.id)}>
     <legend>
       <span className="drag-handle" aria-hidden="true">:::</span>
       {props.legend}
@@ -21,6 +21,7 @@ const EditorFieldset = props => (
 );
 
 EditorFieldset.propTypes = {
+  id: PropTypes.string.isRequired,
   legend: PropTypes.string.isRequired,
   deleteInputHandler: PropTypes.func,
   children: PropTypes.node.isRequired,

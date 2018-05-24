@@ -17,6 +17,7 @@ const InputFieldEditor = ({ fields }) => {
 
         return (
           <EditorFieldset
+            id={fieldId || index}
             key={fieldId || index}
             legend="New input field"
             deleteInputHandler={() => fields.remove(index)}
