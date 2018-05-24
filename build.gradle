@@ -43,3 +43,11 @@ node {
     download = true
 }
 
+task webpack(type: NodeTask) {
+    script = file('node_modules/webpack/bin/webpack.js')
+}
+
+// bundles app
+build.dependsOn webpack
+build.mustRunAfter webpack
+
