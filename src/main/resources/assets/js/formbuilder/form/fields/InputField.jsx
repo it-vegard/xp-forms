@@ -1,6 +1,7 @@
 import React from 'react';
 import FieldTypes from '../../../admin/editor/FieldTypes';
 import CheckboxInput from './CheckboxInput';
+import CheckboxGroup from './CheckboxGroup';
 import DateInput from './DateInput';
 import DateTimeInput from './DateTimeInput';
 import EmailInput from './EmailInput';
@@ -17,7 +18,9 @@ import URLInput from './URLInput';
 const InputField = ({ field }) => {
   switch (field.type) {
     case FieldTypes.CHECKBOX:
-      return <CheckboxInput field={field} />;
+      return <CheckboxInput {...field} />;
+    case FieldTypes.CHECKBOX_GROUP:
+      return <CheckboxGroup {...field} />;
     case FieldTypes.DATE:
       return <DateInput field={field} />;
     case FieldTypes.DATETIME:
@@ -46,5 +49,7 @@ const InputField = ({ field }) => {
       return <TextInput field={field} />;
   }
 };
+
+InputField.displayName = 'InputField';
 
 export default InputField;

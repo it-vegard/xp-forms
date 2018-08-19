@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class DetailsAndSummary extends React.Component {
@@ -17,7 +17,7 @@ class DetailsAndSummary extends React.Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="details-and-summary">
         <button
           className={`detailsButton${this.state.isOpen ? ' detailsButton--open' : ''}`}
           onClick={() => this.openDetails()}
@@ -26,7 +26,7 @@ class DetailsAndSummary extends React.Component {
           {this.props.summary}
         </button>
         {this.state.isOpen && this.props.children}
-      </Fragment>
+      </div>
     );
   }
 }

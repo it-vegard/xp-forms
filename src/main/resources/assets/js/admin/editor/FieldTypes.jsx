@@ -1,5 +1,6 @@
 const FieldTypes = {
   CHECKBOX: 'Checkbox',
+  CHECKBOX_GROUP: 'Checkbox group',
   DATE: 'Date',
   DATETIME: 'Date and time',
   EMAIL: 'Email',

@@ -1,6 +1,7 @@
 import React from 'react';
 import FieldTypes from '../FieldTypes';
 import CheckboxFieldEditor from './CheckboxFieldEditor';
+import CheckboxGroupEditor from './CheckboxGroupEditor';
 import DateFieldEditor from './DateFieldEditor';
 import DateTimeFieldEditor from './DateTimeFieldEditor';
 import EmailFieldEditor from './EmailFieldEditor';
@@ -16,10 +17,11 @@ import UrlFieldEditor from './UrlFieldEditor';
 
 const InputEditor = ({ id, field }) => {
   const { type } = field;
-
   switch (type) {
     case FieldTypes.CHECKBOX:
       return <CheckboxFieldEditor id={id} field={field} />;
+    case FieldTypes.CHECKBOX_GROUP:
+      return <CheckboxGroupEditor id={id} field={field} />;
     case FieldTypes.DATE:
       return <DateFieldEditor id={id} field={field} />;
     case FieldTypes.DATETIME:
