@@ -13,7 +13,7 @@ const CheckboxFieldEditorArray = ({ fields }) => (
       type="button"
       className="xpFormAddInputFieldButton"
       onClick={() => fields.push({})}
-    >Add Input Field
+    >Add checkbox
     </button>
   </div>
 );

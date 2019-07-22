@@ -14,9 +14,9 @@ const DateInput = props => (
     className="xpFormEditorLabel"
   >
     {
-        props.label &&
-        <span>{props.label || 'Date'}</span>
-      }
+      props.label &&
+      <span>{props.label || 'Date'}</span>
+    }
     <Field
       component="input"
       id={props.id || textToName(props.label)}

@@ -61,6 +61,7 @@ class Launcher extends React.Component {
             {this.props.adminTools.map(tool => (
               <LauncherItem
                 currentApplication={that.props.currentApplication}
+                key={`${tool.key.application}-${tool.key.name}`}
                 tool={tool}
               />
             ))}

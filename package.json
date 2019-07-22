@@ -41,7 +41,7 @@
   },
   "scripts": {
     "build": "npm-run-all --serial webpack:prod gradle:build",
-    "deploy": "npm-run-all --serial webpack:prod",
+    "deploy": "npm-run-all --serial webpack:dev",
     "watch": "npm-run-all --parallel gradle:watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "gradle:build": "gradlew build",

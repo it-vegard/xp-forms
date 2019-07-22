@@ -5,7 +5,7 @@ import SelectInput from './SelectInput';
 import FieldTypes from './FieldTypes';
 import InputEditor from './inputEditor';
 
-const isValid = field => field.type && field.label;
+// const isValid = field => ((field.type && field.label) || true);
 
 const InputFieldEditor = ({ fields }) => {
   const selectOptions = Object.values(FieldTypes);
@@ -27,17 +27,7 @@ const InputFieldEditor = ({ fields }) => {
               options={selectOptions}
               required
             />
-            {isValid(field) && <InputEditor id={fieldId} field={field} /> }
-            {/* <TextInput
-              id={`${field}.label`}
-              label="Label"
-              required
-            />
-            <TextInput
-              id={`${field}.id`}
-              label="Name"
-              required
-            /> */}
+            {field.type && <InputEditor id={fieldId} field={field} /> }
           </EditorFieldset>
           );
       })}

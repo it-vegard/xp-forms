@@ -1,10 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   context: path.resolve(__dirname, 'src/main/resources/assets/'),
   entry: {
     'formsAdmin.js': './js/formsAdmin.jsx',
@@ -71,9 +71,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {}
-          }
-        ]
+            options: {},
+          },
+        ],
       },
 
     ],
